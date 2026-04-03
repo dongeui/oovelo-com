@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Service — Gatey</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8e8f0;
+      --text-muted: #888899;
+      --accent: #5b8af5;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .lang-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .lang-btn:hover:not(.active) {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    .doc-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .doc-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 40px 0 12px;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    li {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    [lang-section] { display: none; }
+    [lang-section].active { display: block; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer a { color: var(--text-muted); }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Gatey</a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+  </div>
+</nav>
+
+<!-- ── English ── -->
+<div lang-section="en" class="active">
+  <div class="container">
+    <div class="doc-header">
+      <p class="doc-label">Legal</p>
+      <h1>Terms of Service</h1>
+      <p class="doc-meta">Effective date: April 2026 · Oovelo · <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+    </div>
+
+    <h2>1. Agreement</h2>
+    <p>By downloading, installing, or using Gatey ("the App"), you agree to these Terms of Service ("Terms"). If you do not agree, do not use the App. These Terms are between you and Oovelo ("we", "us", "our").</p>
+
+    <h2>2. License</h2>
+    <p>Upon purchase, we grant you a personal, non-transferable, non-exclusive license to install and use Gatey on one (1) Mac. The license is perpetual for the version purchased. You may not redistribute, sublicense, reverse-engineer, or resell the App.</p>
+
+    <h2>3. Free trial</h2>
+    <p>Gatey offers a 7-day free trial. No credit card is required to start. After the trial period, external notification channels (Slack, Telegram, etc.) will pause until a license is activated. macOS native notifications continue to work.</p>
+
+    <h2>4. Payments</h2>
+    <p>Payments are processed by Paddle, who acts as the Merchant of Record. By completing a purchase you also agree to <a href="https://www.paddle.com/legal/terms" target="_blank">Paddle's Terms of Service</a>. All prices are in USD. We do not store your payment card details.</p>
+
+    <h2>5. Refunds</h2>
+    <p>Please see our <a href="refund.html">Refund Policy</a>.</p>
+
+    <h2>6. Acceptable use</h2>
+    <p>You may only use Gatey on systems you own or have explicit permission to monitor. You agree not to:</p>
+    <ul>
+      <li>Use the App to monitor systems without authorization</li>
+      <li>Circumvent license enforcement mechanisms</li>
+      <li>Share license keys with others</li>
+    </ul>
+
+    <h2>7. Updates</h2>
+    <p>We may release updates to the App from time to time. Updates within the same major version are included at no charge. Future major versions may be offered at a discounted upgrade price. We will not remove features from your purchased version without notice.</p>
+
+    <h2>8. Disclaimer of warranties</h2>
+    <p>The App is provided "as is" without warranty of any kind. We do not guarantee that the App will catch every SSH event, run without interruption, or be free of errors. Use of the App does not replace a proper security policy.</p>
+
+    <h2>9. Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, Oovelo's total liability to you for any claim arising from these Terms or the App is limited to the amount you paid for the App. We are not liable for indirect, incidental, or consequential damages.</p>
+
+    <h2>10. Termination</h2>
+    <p>We may terminate your license if you materially breach these Terms. Upon termination, you must stop using the App and delete all copies.</p>
+
+    <h2>11. Changes to Terms</h2>
+    <p>We may update these Terms from time to time. Material changes will be announced via the App or this page. Continued use after the effective date constitutes acceptance of the updated Terms.</p>
+
+    <h2>12. Governing law</h2>
+    <p>These Terms are governed by the laws of the Republic of Korea, without regard to conflict of law principles.</p>
+
+    <h2>13. Contact</h2>
+    <p>Questions: <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+  </div>
+</div>
+
+<!-- ── 한국어 ── -->
+<div lang-section="ko">
+  <div class="container">
+    <div class="doc-header">
+      <p class="doc-label">법적 고지</p>
+      <h1>이용약관</h1>
+      <p class="doc-meta">시행일: 2026년 4월 · Oovelo · <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+    </div>
+
+    <h2>1. 약관의 동의</h2>
+    <p>Gatey("앱")를 다운로드, 설치, 또는 사용함으로써 본 이용약관("약관")에 동의하는 것으로 간주합니다. 동의하지 않으시면 앱을 사용하지 마십시오. 본 약관은 이용자와 Oovelo("당사") 사이의 계약입니다.</p>
+
+    <h2>2. 라이선스</h2>
+    <p>구매 완료 시, 당사는 Mac 1대에 Gatey를 설치하고 사용할 수 있는 개인적, 비양도성, 비독점적 라이선스를 부여합니다. 라이선스는 구매한 버전에 대해 영구적입니다. 앱을 재배포, 서브라이선스, 리버스 엔지니어링, 또는 재판매하는 것은 금지됩니다.</p>
+
+    <h2>3. 무료 체험</h2>
+    <p>Gatey는 7일 무료 체험을 제공합니다. 체험 시작에 신용카드가 필요하지 않습니다. 체험 기간 종료 후, 라이선스를 활성화하기 전까지 외부 알림 채널(Slack, Telegram 등)이 일시 중지됩니다. macOS 기본 알림은 계속 작동합니다.</p>
+
+    <h2>4. 결제</h2>
+    <p>결제는 Merchant of Record인 Paddle을 통해 처리됩니다. 구매를 완료함으로써 <a href="https://www.paddle.com/legal/terms" target="_blank">Paddle 이용약관</a>에도 동의하는 것으로 간주됩니다. 모든 가격은 USD(미국 달러)입니다. 당사는 결제 카드 정보를 저장하지 않습니다.</p>
+
+    <h2>5. 환불</h2>
+    <p><a href="refund.html">환불 정책</a>을 참고해 주세요.</p>
+
+    <h2>6. 사용 제한</h2>
+    <p>Gatey는 이용자가 소유하거나 명시적으로 모니터링 권한을 가진 시스템에서만 사용할 수 있습니다. 다음 행위는 금지됩니다:</p>
+    <ul>
+      <li>권한 없이 타인의 시스템을 모니터링하는 행위</li>
+      <li>라이선스 적용 메커니즘을 우회하는 행위</li>
+      <li>라이선스 키를 타인과 공유하는 행위</li>
+    </ul>
+
+    <h2>7. 업데이트</h2>
+    <p>당사는 수시로 앱 업데이트를 제공할 수 있습니다. 동일한 메이저 버전 내의 업데이트는 추가 비용 없이 제공됩니다. 향후 메이저 버전은 할인된 업그레이드 가격으로 제공될 수 있습니다. 사전 통지 없이 구매한 버전의 기능을 제거하지 않습니다.</p>
+
+    <h2>8. 보증의 부인</h2>
+    <p>앱은 어떠한 보증도 없이 "있는 그대로" 제공됩니다. 당사는 앱이 모든 SSH 이벤트를 감지하거나, 중단 없이 실행되거나, 오류가 없음을 보장하지 않습니다. 앱 사용이 적절한 보안 정책을 대체하지 않습니다.</p>
+
+    <h2>9. 책임의 제한</h2>
+    <p>관련 법령이 허용하는 최대 범위 내에서, 본 약관 또는 앱과 관련한 모든 청구에 대한 Oovelo의 총 책임은 이용자가 앱에 대해 지불한 금액으로 제한됩니다. 당사는 간접적, 우발적, 결과적 손해에 대해 책임지지 않습니다.</p>
+
+    <h2>10. 해지</h2>
+    <p>이용자가 본 약관을 중대하게 위반할 경우 당사는 라이선스를 해지할 수 있습니다. 해지 시 앱 사용을 중단하고 모든 복사본을 삭제해야 합니다.</p>
+
+    <h2>11. 약관 변경</h2>
+    <p>당사는 수시로 약관을 업데이트할 수 있습니다. 중요한 변경 사항은 앱 또는 이 페이지를 통해 안내드립니다. 시행일 이후 계속 사용하면 업데이트된 약관에 동의한 것으로 간주됩니다.</p>
+
+    <h2>12. 준거법</h2>
+    <p>본 약관은 법률 충돌 원칙에 관계없이 대한민국 법률에 따라 규율됩니다.</p>
+
+    <h2>13. 문의</h2>
+    <p><a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">← Back to Gatey</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="refund.html">Refund Policy</a> &nbsp;·&nbsp;
+  <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[lang-section]').forEach(el => {
+      el.classList.toggle('active', el.getAttribute('lang-section') === lang);
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'English' : '한국어'));
+    });
+    document.documentElement.lang = lang;
+  }
+</script>
+
+</body>
+</html>

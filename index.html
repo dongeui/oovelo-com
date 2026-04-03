@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gatey — SSH Security Alerts for Mac</title>
+  <meta name="description" content="Gatey monitors SSH logins on your Mac and sends instant alerts to Slack, KakaoTalk, Telegram, Discord, and more. The lightest first security layer for Mac home servers.">
+  <meta property="og:title" content="Gatey — SSH Security Alerts for Mac">
+  <meta property="og:description" content="Know the moment someone logs into your Mac server. Alerts sent straight to Slack, KakaoTalk, Telegram, and more.">
+  <meta property="og:type" content="website">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --surface2: #1a1a24;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8e8f0;
+      --text-muted: #888899;
+      --accent: #5b8af5;
+      --accent-hover: #7aa2ff;
+      --green: #3ecf8e;
+      --yellow: #f5a623;
+      --radius: 16px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+
+    .nav-cta:hover { background: var(--accent-hover); }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 96px 0; }
+
+    /* ── Hero ── */
+    #hero {
+      padding: 120px 0 96px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(91,138,245,0.12);
+      border: 1px solid rgba(91,138,245,0.25);
+      color: var(--accent);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #e8e8f0 40%, #888899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.15s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      transition: border-color 0.15s, transform 0.1s;
+    }
+
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-1px); }
+
+    .hero-note {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── Channels ── */
+    .channels {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 56px;
+    }
+
+    .channel-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── Section headings ── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.6;
+    }
+
+    /* ── Features grid ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.15s;
+    }
+
+    .feature-card:hover { border-color: rgba(255,255,255,0.14); }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Events list ── */
+    .events-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 680px) {
+      .events-layout { grid-template-columns: 1fr; }
+    }
+
+    .event-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .event-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+
+    .event-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-warn { background: var(--yellow); }
+    .dot-danger { background: #ff5f57; }
+    .dot-ok { background: var(--green); }
+    .dot-info { background: var(--accent); }
+
+    /* ── Mock notification ── */
+    .mock-notification {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .mock-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mock-app-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #1a3a6b, #2d5bb0);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .mock-app-name { font-weight: 600; font-size: 13px; }
+    .mock-time { color: var(--text-muted); font-size: 12px; margin-left: auto; }
+
+    .mock-body p { color: var(--text-muted); margin-top: 4px; }
+
+    .mock-channel-tag {
+      display: inline-block;
+      background: rgba(91,138,245,0.15);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* ── Pricing ── */
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid rgba(91,138,245,0.3);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 440px;
+      margin: 48px auto 0;
+      text-align: center;
+    }
+
+    .price-amount {
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin: 16px 0 4px;
+    }
+
+    .price-type {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .price-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .price-features li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .trial-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+
+    /* ── Roadmap ── */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 600px) {
+      .roadmap-grid { grid-template-columns: 1fr; }
+    }
+
+    .roadmap-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .roadmap-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .tag-live { background: rgba(62,207,142,0.15); color: var(--green); }
+    .tag-next { background: rgba(91,138,245,0.12); color: var(--accent); }
+
+    .roadmap-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .roadmap-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .roadmap-list li {
+      font-size: 14px;
+      color: var(--text-muted);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .roadmap-list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    details + details { border-top: none; border-radius: 0; }
+    details:first-child { border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+    details:last-child { border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+
+    summary {
+      padding: 18px 20px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    summary::after { content: "+"; color: var(--text-muted); font-size: 18px; }
+    details[open] summary::after { content: "−"; }
+
+    .faq-body {
+      padding: 0 20px 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Install ── */
+    .install-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 540px;
+      margin: 32px auto 0;
+    }
+
+    .install-box code {
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 14px;
+      color: var(--green);
+      flex: 1;
+    }
+
+    .copy-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 12px;
+      transition: border-color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 680px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      section { padding: 64px 0; }
+      #hero { padding: 80px 0 64px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <a href="#" class="nav-logo">Gatey</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="mailto:hello@oovelo.com">Support</a></li>
+  </ul>
+  <a href="#install" class="nav-cta">Try Free</a>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span>🛡️</span> SSH Security Alerts for Mac
+    </div>
+    <h1>Know the moment<br>someone logs in.</h1>
+    <p class="hero-sub">
+      Gatey monitors SSH events on your Mac and sends instant alerts to Slack, KakaoTalk, Telegram, Discord, and more — straight from your menu bar.
+    </p>
+    <div class="hero-actions">
+      <a href="#install" class="btn-primary">
+        ↓ Start 7-Day Free Trial
+      </a>
+      <a href="#features" class="btn-secondary">See how it works</a>
+    </div>
+    <p class="hero-note">macOS 13–15+ compatible · No account required · Local detection</p>
+    <div class="channels">
+      <span class="channel-pill">🔔 macOS</span>
+      <span class="channel-pill">💬 Slack</span>
+      <span class="channel-pill">🟡 KakaoTalk</span>
+      <span class="channel-pill">✈️ Telegram</span>
+      <span class="channel-pill">🎮 Discord</span>
+      <span class="channel-pill">📱 LINE</span>
+      <span class="channel-pill">💚 WhatsApp</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Problem / Solution ── -->
+<section id="features">
+  <div class="container">
+    <p class="section-label">Why Gatey</p>
+    <h2 class="section-title">SSH logins happen silently.<br>Gatey changes that.</h2>
+    <p class="section-desc">
+      Whether it's a Mac mini home server, a MacBook left at home, or an AI workstation — if SSH is running, Gatey watches it. Every meaningful event becomes an alert on the channel you already use.
+    </p>
+
+    <div class="features-grid" style="margin-top:48px">
+      <div class="feature-card">
+        <span class="feature-icon">⚡️</span>
+        <h3>Real-time detection</h3>
+        <p>Gatey streams macOS system logs locally — no polling delay, no cloud dependency for detection.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h3>Smart classification</h3>
+        <p>Not just "login success." Gatey labels new IPs, root logins, off-hours access, repeated failures, and brute-force patterns separately.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔕</span>
+        <h3>Whitelist & noise control</h3>
+        <p>Add trusted IPs to the whitelist. Toggle alerts per entry. Throttling keeps your channels clean during brute-force bursts.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3>Weekly reports</h3>
+        <p>Every Monday, Gatey sends a summary — logins, failures, new IPs, brute-force cases — to your preferred channel.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌏</span>
+        <h3>Multilingual</h3>
+        <p>UI and alert text in English, 한국어, 日本語, and 简体中文. Follows system language on first launch.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🍎</span>
+        <h3>Native menu bar app</h3>
+        <p>Sits quietly in your menu bar. Lightweight, no background service accounts, no kernel extensions.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔄</span>
+        <h3>Works on latest macOS</h3>
+        <p>macOS 15 Sequoia+ changed how SSH processes run. Gatey handles both <code>sshd</code> and <code>sshd-session</code> — so it keeps working after macOS upgrades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Events ── -->
+<section>
+  <div class="container">
+    <div class="events-layout">
+      <div>
+        <p class="section-label">What Gatey detects</p>
+        <h2 class="section-title">Every SSH event that matters.</h2>
+        <p class="section-desc" style="margin-bottom:0">
+          Gatey goes beyond raw log lines — it reads the context and tells you what actually happened.
+        </p>
+      </div>
+      <div>
+        <ul class="event-list">
+          <li class="event-item">
+            <span class="event-dot dot-ok"></span>
+            <span>Successful login from new external IP</span>
+          </li>
+          <li class="event-item">
+            <span class="event-dot dot-danger"></span>
+            <span>root login</span>
+          </li>
+          <li class="event-item">
+            <span class="event-dot dot-warn"></span>
+            <span>Login success after repeated failures</span>
+          </li>
+          <li class="event-item">
+            <span class="event-dot dot-warn"></span>
+            <span>Off-hours access</span>
+          </li>
+          <li class="event-item">
+            <span class="event-dot dot-danger"></span>
+            <span>Brute-force pattern detected</span>
+          </li>
+          <li class="event-item">
+            <span class="event-dot dot-info"></span>
+            <span>Repeated authentication failures</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Mock notification -->
+    <div class="mock-notification" style="max-width:480px;margin:48px auto 0">
+      <div class="mock-header">
+        <div class="mock-app-icon">🛡️</div>
+        <div>
+          <div class="mock-app-name">Gatey</div>
+        </div>
+        <span class="mock-time">Just now</span>
+      </div>
+      <div class="mock-body">
+        <span class="mock-channel-tag">Slack</span>
+        <p style="color:var(--text);font-weight:600">🚨 Brute-force attempt detected</p>
+        <p>IP: 203.0.113.42 · 14 failures in 60s<br>
+        This IP has not been seen before.<br>
+        <span style="color:var(--yellow)">→ Consider adding to firewall rules</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Pricing ── -->
+<section id="pricing">
+  <div class="container" style="text-align:center">
+    <p class="section-label">Pricing</p>
+    <h2 class="section-title">Simple, one-time pricing.</h2>
+    <p class="section-desc" style="margin:0 auto">
+      No subscription. Pay once, use forever — on one Mac.
+    </p>
+
+    <div class="pricing-card">
+      <p style="color:var(--text-muted);font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:600">Launch Price</p>
+      <div class="price-amount">$9</div>
+      <p class="price-type">Lifetime license · 1 Mac</p>
+      <ul class="price-features">
+        <li>All current SSH alert features</li>
+        <li>All 7 notification channels</li>
+        <li>Weekly reports + in-app report</li>
+        <li>Multilingual UI (EN / KO / JA / ZH)</li>
+        <li>Free updates until next major release</li>
+        <li>Early buyers included in next major update</li>
+      </ul>
+      <a href="#install" class="btn-primary" style="width:100%;justify-content:center;font-size:15px">
+        Start 7-Day Free Trial
+      </a>
+      <p class="trial-note">No credit card required for trial · macOS 13+</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Roadmap ── -->
+<section id="roadmap">
+  <div class="container">
+    <p class="section-label">Roadmap</p>
+    <h2 class="section-title">Starting with SSH.<br>Growing into a full home server watchdog.</h2>
+    <p class="section-desc">
+      Gatey is built to expand. Today it's your SSH alert layer. Next, it becomes the lightweight security hub for everything running on your Mac.
+    </p>
+
+    <div class="roadmap-grid">
+      <div class="roadmap-card">
+        <span class="roadmap-tag tag-live">Available Now</span>
+        <h3>SSH Security Alerts</h3>
+        <ul class="roadmap-list">
+          <li>Login success & failure detection</li>
+          <li>New IP, root, brute-force classification</li>
+          <li>Slack, Discord, KakaoTalk, Telegram, LINE, WhatsApp, macOS</li>
+          <li>Whitelist with per-entry mute toggle</li>
+          <li>Weekly reports + in-app report view</li>
+          <li>English / 한국어 / 日本語 / 简体中文</li>
+        </ul>
+      </div>
+      <div class="roadmap-card">
+        <span class="roadmap-tag tag-next">Coming Next · 2026 H2</span>
+        <h3>Home Server Watchdog</h3>
+        <ul class="roadmap-list">
+          <li>sudo / su privilege escalation detection</li>
+          <li>Apple Remote Desktop & Screen Sharing alerts</li>
+          <li>Firewall & sharing service change detection</li>
+          <li>Unified system event timeline</li>
+          <li>Integrated cross-event reporting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Install ── -->
+<section id="install">
+  <div class="container" style="text-align:center">
+    <p class="section-label">Install</p>
+    <h2 class="section-title">Up and running in 30 seconds.</h2>
+    <p class="section-desc" style="margin:0 auto">
+      Install via Homebrew, or download the DMG directly from GitHub Releases.
+    </p>
+
+    <div class="install-box">
+      <code>brew install --cask gatey-app/gatey/gatey</code>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('brew install --cask gatey-app/gatey/gatey').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)})">Copy</button>
+    </div>
+
+    <p style="margin-top:20px;font-size:13px;color:var(--text-muted)">
+      Or <a href="https://github.com/dongeui/Gatey/releases/latest" style="color:var(--accent);text-decoration:none">download the latest DMG</a> from GitHub Releases.
+    </p>
+
+    <p style="margin-top:32px;font-size:13px;color:var(--text-muted);max-width:480px;margin-left:auto;margin-right:auto">
+      Gatey is notarized by Apple for your safety. On first launch, you'll be asked to grant Full Disk Access so it can read SSH logs — nothing else is sent outside your Mac.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="container">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">Common questions.</h2>
+
+    <div class="faq-list">
+      <details>
+        <summary>Does Gatey block attacks?</summary>
+        <p class="faq-body">No. Gatey is a monitoring and alerting tool — not a firewall. It tells you what's happening so you can decide what to do. Blocking is out of scope by design.</p>
+      </details>
+      <details>
+        <summary>Will it slow down my Mac?</summary>
+        <p class="faq-body">Gatey reads macOS system logs using the standard <code>log stream</code> command. There's no background service, kernel extension, or network traffic. CPU and memory impact is minimal.</p>
+      </details>
+      <details>
+        <summary>Does Gatey send my SSH logs anywhere?</summary>
+        <p class="faq-body">No. SSH event detection happens entirely on your Mac. Gatey only sends structured alert payloads (IP address, event type, timestamp) to the notification channels you configure.</p>
+      </details>
+      <details>
+        <summary>Why does Gatey need Full Disk Access?</summary>
+        <p class="faq-body">macOS restricts access to system logs by default. Full Disk Access allows Gatey to read sshd log events. Without it, monitoring cannot start.</p>
+      </details>
+      <details>
+        <summary>Can I use Gatey on multiple Macs?</summary>
+        <p class="faq-body">Each license covers one Mac. If you run multiple home servers, you'll need a license per machine. You can deactivate and move the license if you switch Macs.</p>
+      </details>
+      <details>
+        <summary>Do all notification channels work without limits?</summary>
+        <p class="faq-body">Gatey respects each channel's official rate limits. Some messengers (like KakaoTalk and WhatsApp) restrict bulk sending. Gatey is intentionally conservative and will notify you when a channel limit is reached.</p>
+      </details>
+      <details>
+        <summary>What happens when the 7-day trial expires?</summary>
+        <p class="faq-body">macOS notifications keep working — you'll still see alerts in Notification Center. External channels (Slack, KakaoTalk, etc.) will pause until you activate a license. No data is deleted.</p>
+      </details>
+      <details>
+        <summary>I just bought — where do I enter my license key?</summary>
+        <p class="faq-body">Open Gatey → click the menu bar icon → Settings → License tab. Paste your key from the purchase email. If you don't see the email, check your spam folder or use the Paddle customer portal link in your receipt.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="refund.html">Refund Policy</a>
+    <a href="mailto:hello@oovelo.com">Support</a>
+    <a href="https://github.com/dongeui/Gatey/releases">Releases</a>
+  </div>
+  <p>Made by <a href="https://oovelo.com">Oovelo</a> · © 2026 Oovelo. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

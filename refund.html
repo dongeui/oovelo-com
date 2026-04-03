@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Refund Policy — Gatey</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8e8f0;
+      --text-muted: #888899;
+      --accent: #5b8af5;
+      --green: #3ecf8e;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .lang-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .lang-btn:hover:not(.active) {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    .doc-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .doc-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 40px 0 12px;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    li {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+
+    .highlight-box p { margin-bottom: 0; color: var(--text); }
+
+    [lang-section] { display: none; }
+    [lang-section].active { display: block; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer a { color: var(--text-muted); }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Gatey</a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+  </div>
+</nav>
+
+<!-- ── English ── -->
+<div lang-section="en" class="active">
+  <div class="container">
+    <div class="doc-header">
+      <p class="doc-label">Legal</p>
+      <h1>Refund Policy</h1>
+      <p class="doc-meta">Effective date: April 2026 · Oovelo · <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Short version:</strong> 14-day refund, no questions asked. Email us with your order number.</p>
+    </div>
+
+    <h2>1. 14-day refund guarantee</h2>
+    <p>If you are not satisfied with Gatey for any reason, you may request a full refund within 14 days of your purchase. No questions asked.</p>
+    <p>To request a refund, email <a href="mailto:hello@oovelo.com">hello@oovelo.com</a> with your order number (from the Paddle purchase email). We will process your refund within 3 business days.</p>
+
+    <h2>2. After 14 days</h2>
+    <p>Refund requests made after 14 days are evaluated on a case-by-case basis. We may issue a refund at our discretion if there is a documented technical issue that we were unable to resolve.</p>
+
+    <h2>3. What is not refundable</h2>
+    <ul>
+      <li>Purchases made more than 14 days ago (except as noted above)</li>
+      <li>Licenses that have been used to activate more than one Mac</li>
+    </ul>
+
+    <h2>4. How refunds are processed</h2>
+    <p>Refunds are processed through Paddle, our payment processor. The refund will be returned to the original payment method. Processing time depends on your bank or card issuer (typically 3–10 business days after we initiate the refund).</p>
+    <p>After a refund is issued, your license key will be deactivated.</p>
+
+    <h2>5. Free trial</h2>
+    <p>Gatey offers a 7-day free trial — no credit card required. We encourage you to try the App before purchasing. A purchase is only needed after the trial ends and you decide to keep using it.</p>
+
+    <h2>6. Contact</h2>
+    <p>For refund requests or questions: <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+  </div>
+</div>
+
+<!-- ── 한국어 ── -->
+<div lang-section="ko">
+  <div class="container">
+    <div class="doc-header">
+      <p class="doc-label">법적 고지</p>
+      <h1>환불 정책</h1>
+      <p class="doc-meta">시행일: 2026년 4월 · Oovelo · <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>요약:</strong> 구매 후 14일 이내 조건 없이 전액 환불됩니다. 주문 번호와 함께 이메일로 요청해 주세요.</p>
+    </div>
+
+    <h2>1. 14일 환불 보장</h2>
+    <p>어떤 이유로든 Gatey에 만족하지 않으신다면, 구매일로부터 14일 이내에 전액 환불을 요청하실 수 있습니다. 이유를 묻지 않습니다.</p>
+    <p>환불을 요청하시려면, Paddle 구매 이메일에 있는 주문 번호와 함께 <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>으로 이메일을 보내 주세요. 영업일 기준 3일 이내에 환불 처리해 드립니다.</p>
+
+    <h2>2. 14일 이후 환불</h2>
+    <p>14일 이후의 환불 요청은 사례별로 검토합니다. 당사가 해결하지 못한 기술적 문제가 문서화된 경우, 재량에 따라 환불을 처리할 수 있습니다.</p>
+
+    <h2>3. 환불 불가 사항</h2>
+    <ul>
+      <li>구매일로부터 14일이 초과된 경우 (위 예외 사항 제외)</li>
+      <li>두 대 이상의 Mac에 활성화된 라이선스</li>
+    </ul>
+
+    <h2>4. 환불 처리 방식</h2>
+    <p>환불은 결제 대행사인 Paddle을 통해 처리됩니다. 환불금은 원래 결제 수단으로 반환됩니다. 처리 시간은 카드사 또는 은행에 따라 다를 수 있습니다 (환불 요청 후 보통 영업일 기준 3~10일).</p>
+    <p>환불이 완료되면 해당 라이선스 키는 비활성화됩니다.</p>
+
+    <h2>5. 무료 체험</h2>
+    <p>Gatey는 7일 무료 체험을 제공합니다 — 신용카드가 필요하지 않습니다. 구매 전에 충분히 체험해 보시길 권장합니다. 결제는 체험 기간이 끝난 후 계속 사용하기로 결정하셨을 때만 필요합니다.</p>
+
+    <h2>6. 문의</h2>
+    <p>환불 요청 또는 문의: <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">← Back to Gatey</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+  <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[lang-section]').forEach(el => {
+      el.classList.toggle('active', el.getAttribute('lang-section') === lang);
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'English' : '한국어'));
+    });
+    document.documentElement.lang = lang;
+  }
+</script>
+
+</body>
+</html>
