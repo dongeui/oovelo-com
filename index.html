@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gatey — SSH Security Alerts for Mac</title>
-  <meta name="description" content="Gatey monitors SSH logins on your Mac and sends instant alerts to Slack, KakaoTalk, Telegram, Discord, and more. The lightest first security layer for Mac home servers.">
+  <meta name="description" content="Gatey monitors SSH logins on your Mac and sends instant alerts to Slack, KakaoTalk, Telegram, Discord, and more.">
   <meta property="og:title" content="Gatey — SSH Security Alerts for Mac">
   <meta property="og:description" content="Know the moment someone logs into your Mac server. Alerts sent straight to Slack, KakaoTalk, Telegram, and more.">
   <meta property="og:type" content="website">
@@ -73,6 +73,39 @@
 
     .nav-links a:hover { color: var(--text); }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 3px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 16px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .lang-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .lang-btn:hover:not(.active) {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+    }
+
     .nav-cta {
       background: var(--accent);
       color: #fff;
@@ -82,6 +115,7 @@
       font-size: 14px;
       font-weight: 600;
       transition: background 0.15s;
+      white-space: nowrap;
     }
 
     .nav-cta:hover { background: var(--accent-hover); }
@@ -531,6 +565,7 @@
       font-size: 12px;
       transition: border-color 0.15s;
       flex-shrink: 0;
+      font-family: inherit;
     }
 
     .copy-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
@@ -566,6 +601,7 @@
       .nav-links { display: none; }
       section { padding: 64px 0; }
       #hero { padding: 80px 0 64px; }
+      .lang-btn { padding: 4px 7px; font-size: 11px; }
     }
   </style>
 </head>
@@ -575,89 +611,94 @@
 <nav>
   <a href="#" class="nav-logo">Gatey</a>
   <ul class="nav-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="mailto:hello@oovelo.com">Support</a></li>
+    <li><a href="#features" data-i18n="nav.features">Features</a></li>
+    <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+    <li><a href="mailto:hi@oovelo.com" data-i18n="nav.support">Support</a></li>
   </ul>
-  <a href="#install" class="nav-cta">Try Free</a>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
+      <button class="lang-btn" onclick="setLang('ko')" data-lang="ko">한국어</button>
+      <button class="lang-btn" onclick="setLang('ja')" data-lang="ja">日本語</button>
+      <button class="lang-btn" onclick="setLang('zh')" data-lang="zh">中文</button>
+    </div>
+    <a href="#install" class="nav-cta" data-i18n="nav.cta">Try Free</a>
+  </div>
 </nav>
 
 <!-- ── Hero ── -->
 <section id="hero">
   <div class="container">
     <div class="hero-badge">
-      <span>🛡️</span> SSH Security Alerts for Mac
+      <span>🛡️</span> <span data-i18n="hero.badge">SSH Security Alerts for Mac</span>
     </div>
-    <h1>Know the moment<br>someone logs in.</h1>
-    <p class="hero-sub">
+    <h1 data-i18n-html="hero.h1">Know the moment<br>someone logs in.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">
       Gatey monitors SSH events on your Mac and sends instant alerts to Slack, KakaoTalk, Telegram, Discord, and more — straight from your menu bar.
     </p>
     <div class="hero-actions">
-      <a href="#install" class="btn-primary">
-        ↓ Start 7-Day Free Trial
-      </a>
-      <a href="#features" class="btn-secondary">See how it works</a>
+      <a href="#install" class="btn-primary" data-i18n="hero.cta1">↓ Start 7-Day Free Trial</a>
+      <a href="#features" class="btn-secondary" data-i18n="hero.cta2">See how it works</a>
     </div>
-    <p class="hero-note">macOS 13–15+ compatible · No account required · Local detection</p>
+    <p class="hero-note" data-i18n="hero.note">macOS 13–15+ compatible · No account required · Local detection</p>
     <div class="channels">
       <span class="channel-pill">🔔 macOS</span>
       <span class="channel-pill">💬 Slack</span>
-      <span class="channel-pill">🟡 KakaoTalk</span>
-      <span class="channel-pill">✈️ Telegram</span>
       <span class="channel-pill">🎮 Discord</span>
+      <span class="channel-pill">✈️ Telegram</span>
       <span class="channel-pill">📱 LINE</span>
-      <span class="channel-pill">💚 WhatsApp</span>
+      <span class="channel-pill">🟡 KakaoTalk</span>
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- ── Problem / Solution ── -->
+<!-- ── Features ── -->
 <section id="features">
   <div class="container">
-    <p class="section-label">Why Gatey</p>
-    <h2 class="section-title">SSH logins happen silently.<br>Gatey changes that.</h2>
-    <p class="section-desc">
-      Whether it's a Mac mini home server, a MacBook left at home, or an AI workstation — if SSH is running, Gatey watches it. Every meaningful event becomes an alert on the channel you already use.
+    <p class="section-label" data-i18n="feat.label">Why Gatey</p>
+    <h2 class="section-title" data-i18n-html="feat.title">SSH logins happen silently.<br>Gatey changes that.</h2>
+    <p class="section-desc" data-i18n="feat.desc">
+      Whether it's a Mac mini home server, a MacBook left at home, or an AI workstation — if SSH is running, Gatey watches it.
     </p>
 
-    <div class="features-grid" style="margin-top:48px">
+    <div class="features-grid">
       <div class="feature-card">
         <span class="feature-icon">⚡️</span>
-        <h3>Real-time detection</h3>
-        <p>Gatey streams macOS system logs locally — no polling delay, no cloud dependency for detection.</p>
+        <h3 data-i18n="feat.rt.title">Real-time detection</h3>
+        <p data-i18n="feat.rt.desc">Gatey streams macOS system logs locally — no polling delay, no cloud dependency for detection.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🎯</span>
-        <h3>Smart classification</h3>
-        <p>Not just "login success." Gatey labels new IPs, root logins, off-hours access, repeated failures, and brute-force patterns separately.</p>
+        <h3 data-i18n="feat.sc.title">Smart classification</h3>
+        <p data-i18n="feat.sc.desc">Not just "login success." Gatey labels new IPs, root logins, off-hours access, repeated failures, and brute-force patterns separately.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🔕</span>
-        <h3>Whitelist & noise control</h3>
-        <p>Add trusted IPs to the whitelist. Toggle alerts per entry. Throttling keeps your channels clean during brute-force bursts.</p>
+        <h3 data-i18n="feat.wl.title">Whitelist & noise control</h3>
+        <p data-i18n="feat.wl.desc">Add trusted IPs to the whitelist. Toggle alerts per entry. Throttling keeps your channels clean during brute-force bursts.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">📊</span>
-        <h3>Weekly reports</h3>
-        <p>Every Monday, Gatey sends a summary — logins, failures, new IPs, brute-force cases — to your preferred channel.</p>
+        <h3 data-i18n="feat.wr.title">Weekly reports</h3>
+        <p data-i18n="feat.wr.desc">Every Monday, Gatey sends a summary — logins, failures, new IPs, brute-force cases — to your preferred channel.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🌏</span>
-        <h3>Multilingual</h3>
-        <p>UI and alert text in English, 한국어, 日本語, and 简体中文. Follows system language on first launch.</p>
+        <h3 data-i18n="feat.ml.title">Multilingual</h3>
+        <p data-i18n="feat.ml.desc">UI and alert text in English, 한국어, 日本語, and 简体中文. Follows system language on first launch.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🍎</span>
-        <h3>Native menu bar app</h3>
-        <p>Sits quietly in your menu bar. Lightweight, no background service accounts, no kernel extensions.</p>
+        <h3 data-i18n="feat.nb.title">Native menu bar app</h3>
+        <p data-i18n="feat.nb.desc">Sits quietly in your menu bar. Lightweight, no background service accounts, no kernel extensions.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🔄</span>
-        <h3>Works on latest macOS</h3>
-        <p>macOS 15 Sequoia+ changed how SSH processes run. Gatey handles both <code>sshd</code> and <code>sshd-session</code> — so it keeps working after macOS upgrades.</p>
+        <h3 data-i18n="feat.mcos.title">Works on latest macOS</h3>
+        <p data-i18n="feat.mcos.desc">macOS 15 Sequoia+ changed how SSH processes run. Gatey handles both sshd and sshd-session — so it keeps working after macOS upgrades.</p>
       </div>
     </div>
   </div>
@@ -670,57 +711,34 @@
   <div class="container">
     <div class="events-layout">
       <div>
-        <p class="section-label">What Gatey detects</p>
-        <h2 class="section-title">Every SSH event that matters.</h2>
-        <p class="section-desc" style="margin-bottom:0">
+        <p class="section-label" data-i18n="evts.label">What Gatey detects</p>
+        <h2 class="section-title" data-i18n="evts.title">Every SSH event that matters.</h2>
+        <p class="section-desc" data-i18n="evts.desc">
           Gatey goes beyond raw log lines — it reads the context and tells you what actually happened.
         </p>
       </div>
       <div>
         <ul class="event-list">
-          <li class="event-item">
-            <span class="event-dot dot-ok"></span>
-            <span>Successful login from new external IP</span>
-          </li>
-          <li class="event-item">
-            <span class="event-dot dot-danger"></span>
-            <span>root login</span>
-          </li>
-          <li class="event-item">
-            <span class="event-dot dot-warn"></span>
-            <span>Login success after repeated failures</span>
-          </li>
-          <li class="event-item">
-            <span class="event-dot dot-warn"></span>
-            <span>Off-hours access</span>
-          </li>
-          <li class="event-item">
-            <span class="event-dot dot-danger"></span>
-            <span>Brute-force pattern detected</span>
-          </li>
-          <li class="event-item">
-            <span class="event-dot dot-info"></span>
-            <span>Repeated authentication failures</span>
-          </li>
+          <li class="event-item"><span class="event-dot dot-ok"></span><span data-i18n="evts.e1">Successful login from new external IP</span></li>
+          <li class="event-item"><span class="event-dot dot-danger"></span><span data-i18n="evts.e2">root login</span></li>
+          <li class="event-item"><span class="event-dot dot-warn"></span><span data-i18n="evts.e3">Login success after repeated failures</span></li>
+          <li class="event-item"><span class="event-dot dot-warn"></span><span data-i18n="evts.e4">Off-hours access</span></li>
+          <li class="event-item"><span class="event-dot dot-danger"></span><span data-i18n="evts.e5">Brute-force pattern detected</span></li>
+          <li class="event-item"><span class="event-dot dot-info"></span><span data-i18n="evts.e6">Repeated authentication failures</span></li>
         </ul>
       </div>
     </div>
 
-    <!-- Mock notification -->
     <div class="mock-notification" style="max-width:480px;margin:48px auto 0">
       <div class="mock-header">
         <div class="mock-app-icon">🛡️</div>
-        <div>
-          <div class="mock-app-name">Gatey</div>
-        </div>
-        <span class="mock-time">Just now</span>
+        <div><div class="mock-app-name">Gatey</div></div>
+        <span class="mock-time" data-i18n="evts.notif.time">Just now</span>
       </div>
       <div class="mock-body">
         <span class="mock-channel-tag">Slack</span>
-        <p style="color:var(--text);font-weight:600">🚨 Brute-force attempt detected</p>
-        <p>IP: 203.0.113.42 · 14 failures in 60s<br>
-        This IP has not been seen before.<br>
-        <span style="color:var(--yellow)">→ Consider adding to firewall rules</span></p>
+        <p style="color:var(--text);font-weight:600" data-i18n="evts.notif.title">🚨 Brute-force attempt detected</p>
+        <p data-i18n-html="evts.notif.body">IP: 203.0.113.42 · 14 failures in 60s<br>This IP has not been seen before.<br><span style="color:var(--yellow)">→ Consider adding to firewall rules</span></p>
       </div>
     </div>
   </div>
@@ -731,28 +749,24 @@
 <!-- ── Pricing ── -->
 <section id="pricing">
   <div class="container" style="text-align:center">
-    <p class="section-label">Pricing</p>
-    <h2 class="section-title">Simple, one-time pricing.</h2>
-    <p class="section-desc" style="margin:0 auto">
-      No subscription. Pay once, use forever — on one Mac.
-    </p>
+    <p class="section-label" data-i18n="price.label">Pricing</p>
+    <h2 class="section-title" data-i18n="price.title">Simple, one-time pricing.</h2>
+    <p class="section-desc" style="margin:0 auto" data-i18n="price.desc">No subscription. Pay once, use forever — on one Mac.</p>
 
     <div class="pricing-card">
-      <p style="color:var(--text-muted);font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:600">Launch Price</p>
+      <p style="color:var(--text-muted);font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:600" data-i18n="price.tag">Launch Price</p>
       <div class="price-amount">$9</div>
-      <p class="price-type">Lifetime license · 1 Mac</p>
+      <p class="price-type" data-i18n="price.lifetime">Lifetime license · 1 Mac</p>
       <ul class="price-features">
-        <li>All current SSH alert features</li>
-        <li>All 7 notification channels</li>
-        <li>Weekly reports + in-app report</li>
-        <li>Multilingual UI (EN / KO / JA / ZH)</li>
-        <li>Free updates until next major release</li>
-        <li>Early buyers included in next major update</li>
+        <li data-i18n="price.f1">All current SSH alert features</li>
+        <li data-i18n="price.f2">All 6 notification channels</li>
+        <li data-i18n="price.f3">Weekly reports + in-app report</li>
+        <li data-i18n="price.f4">Multilingual UI (EN / KO / JA / ZH)</li>
+        <li data-i18n="price.f5">Free updates until next major release</li>
+        <li data-i18n="price.f6">Early buyers included in next major update</li>
       </ul>
-      <a href="#install" class="btn-primary" style="width:100%;justify-content:center;font-size:15px">
-        Start 7-Day Free Trial
-      </a>
-      <p class="trial-note">No credit card required for trial · macOS 13+</p>
+      <a href="#install" class="btn-primary" style="width:100%;justify-content:center;font-size:15px" data-i18n="price.cta">Start 7-Day Free Trial</a>
+      <p class="trial-note" data-i18n="price.note">No credit card required for trial · macOS 13+</p>
     </div>
   </div>
 </section>
@@ -762,34 +776,32 @@
 <!-- ── Roadmap ── -->
 <section id="roadmap">
   <div class="container">
-    <p class="section-label">Roadmap</p>
-    <h2 class="section-title">Starting with SSH.<br>Growing into a full home server watchdog.</h2>
-    <p class="section-desc">
-      Gatey is built to expand. Today it's your SSH alert layer. Next, it becomes the lightweight security hub for everything running on your Mac.
-    </p>
+    <p class="section-label" data-i18n="road.label">Roadmap</p>
+    <h2 class="section-title" data-i18n-html="road.title">Starting with SSH.<br>Growing into a full home server watchdog.</h2>
+    <p class="section-desc" data-i18n="road.desc">Gatey is built to expand. Today it's your SSH alert layer. Next, it becomes the lightweight security hub for everything running on your Mac.</p>
 
     <div class="roadmap-grid">
       <div class="roadmap-card">
-        <span class="roadmap-tag tag-live">Available Now</span>
-        <h3>SSH Security Alerts</h3>
+        <span class="roadmap-tag tag-live" data-i18n="road.now">Available Now</span>
+        <h3 data-i18n="road.now.title">SSH Security Alerts</h3>
         <ul class="roadmap-list">
-          <li>Login success & failure detection</li>
-          <li>New IP, root, brute-force classification</li>
-          <li>Slack, Discord, KakaoTalk, Telegram, LINE, WhatsApp, macOS</li>
-          <li>Whitelist with per-entry mute toggle</li>
-          <li>Weekly reports + in-app report view</li>
-          <li>English / 한국어 / 日本語 / 简体中文</li>
+          <li data-i18n="road.now.i1">Login success & failure detection</li>
+          <li data-i18n="road.now.i2">New IP, root, brute-force classification</li>
+          <li data-i18n="road.now.i3">Slack, Discord, Telegram, LINE, KakaoTalk, macOS</li>
+          <li data-i18n="road.now.i4">Whitelist with per-entry mute toggle</li>
+          <li data-i18n="road.now.i5">Weekly reports + in-app report view</li>
+          <li data-i18n="road.now.i6">English / 한국어 / 日本語 / 简体中文</li>
         </ul>
       </div>
       <div class="roadmap-card">
-        <span class="roadmap-tag tag-next">Coming Next · 2026 H2</span>
-        <h3>Home Server Watchdog</h3>
+        <span class="roadmap-tag tag-next" data-i18n="road.next">Coming Next · 2026 H2</span>
+        <h3 data-i18n="road.next.title">Home Server Watchdog</h3>
         <ul class="roadmap-list">
-          <li>sudo / su privilege escalation detection</li>
-          <li>Apple Remote Desktop & Screen Sharing alerts</li>
-          <li>Firewall & sharing service change detection</li>
-          <li>Unified system event timeline</li>
-          <li>Integrated cross-event reporting</li>
+          <li data-i18n="road.next.i1">sudo / su privilege escalation detection</li>
+          <li data-i18n="road.next.i2">Apple Remote Desktop & Screen Sharing alerts</li>
+          <li data-i18n="road.next.i3">Firewall & sharing service change detection</li>
+          <li data-i18n="road.next.i4">Unified system event timeline</li>
+          <li data-i18n="road.next.i5">Integrated cross-event reporting</li>
         </ul>
       </div>
     </div>
@@ -801,22 +813,20 @@
 <!-- ── Install ── -->
 <section id="install">
   <div class="container" style="text-align:center">
-    <p class="section-label">Install</p>
-    <h2 class="section-title">Up and running in 30 seconds.</h2>
-    <p class="section-desc" style="margin:0 auto">
-      Install via Homebrew, or download the DMG directly from GitHub Releases.
-    </p>
+    <p class="section-label" data-i18n="inst.label">Install</p>
+    <h2 class="section-title" data-i18n="inst.title">Up and running in 30 seconds.</h2>
+    <p class="section-desc" style="margin:0 auto" data-i18n="inst.desc">Install via Homebrew, or download the DMG directly from GitHub Releases.</p>
 
     <div class="install-box">
-      <code>brew install --cask gatey-app/gatey/gatey</code>
-      <button class="copy-btn" onclick="navigator.clipboard.writeText('brew install --cask gatey-app/gatey/gatey').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)})">Copy</button>
+      <code>brew install --cask dongeui/gatey/gatey</code>
+      <button class="copy-btn" id="copy-btn" data-i18n="inst.copy" onclick="copyInstall(this)">Copy</button>
     </div>
 
     <p style="margin-top:20px;font-size:13px;color:var(--text-muted)">
-      Or <a href="https://github.com/dongeui/Gatey/releases/latest" style="color:var(--accent);text-decoration:none">download the latest DMG</a> from GitHub Releases.
+      <span data-i18n="inst.dmg">Or </span><a href="https://github.com/dongeui/homebrew-gatey/releases/latest" style="color:var(--accent);text-decoration:none" data-i18n="inst.dmg.link">download the latest DMG from GitHub Releases.</a>
     </p>
 
-    <p style="margin-top:32px;font-size:13px;color:var(--text-muted);max-width:480px;margin-left:auto;margin-right:auto">
+    <p style="margin-top:32px;font-size:13px;color:var(--text-muted);max-width:480px;margin-left:auto;margin-right:auto" data-i18n="inst.notary">
       Gatey is notarized by Apple for your safety. On first launch, you'll be asked to grant Full Disk Access so it can read SSH logs — nothing else is sent outside your Mac.
     </p>
   </div>
@@ -827,41 +837,41 @@
 <!-- ── FAQ ── -->
 <section id="faq">
   <div class="container">
-    <p class="section-label">FAQ</p>
-    <h2 class="section-title">Common questions.</h2>
+    <p class="section-label" data-i18n="faq.label">FAQ</p>
+    <h2 class="section-title" data-i18n="faq.title">Common questions.</h2>
 
     <div class="faq-list">
       <details>
-        <summary>Does Gatey block attacks?</summary>
-        <p class="faq-body">No. Gatey is a monitoring and alerting tool — not a firewall. It tells you what's happening so you can decide what to do. Blocking is out of scope by design.</p>
+        <summary data-i18n="faq.q1">Does Gatey block attacks?</summary>
+        <p class="faq-body" data-i18n="faq.a1">No. Gatey is a monitoring and alerting tool — not a firewall. It tells you what's happening so you can decide what to do. Blocking is out of scope by design.</p>
       </details>
       <details>
-        <summary>Will it slow down my Mac?</summary>
-        <p class="faq-body">Gatey reads macOS system logs using the standard <code>log stream</code> command. There's no background service, kernel extension, or network traffic. CPU and memory impact is minimal.</p>
+        <summary data-i18n="faq.q2">Will it slow down my Mac?</summary>
+        <p class="faq-body" data-i18n="faq.a2">Gatey reads macOS system logs using the standard log stream command. There's no background service, kernel extension, or network traffic. CPU and memory impact is minimal.</p>
       </details>
       <details>
-        <summary>Does Gatey send my SSH logs anywhere?</summary>
-        <p class="faq-body">No. SSH event detection happens entirely on your Mac. Gatey only sends structured alert payloads (IP address, event type, timestamp) to the notification channels you configure.</p>
+        <summary data-i18n="faq.q3">Does Gatey send my SSH logs anywhere?</summary>
+        <p class="faq-body" data-i18n="faq.a3">No. SSH event detection happens entirely on your Mac. Gatey only sends structured alert payloads (IP address, event type, timestamp) to the notification channels you configure.</p>
       </details>
       <details>
-        <summary>Why does Gatey need Full Disk Access?</summary>
-        <p class="faq-body">macOS restricts access to system logs by default. Full Disk Access allows Gatey to read sshd log events. Without it, monitoring cannot start.</p>
+        <summary data-i18n="faq.q4">Why does Gatey need Full Disk Access?</summary>
+        <p class="faq-body" data-i18n="faq.a4">macOS restricts access to system logs by default. Full Disk Access allows Gatey to read sshd log events. Without it, monitoring cannot start.</p>
       </details>
       <details>
-        <summary>Can I use Gatey on multiple Macs?</summary>
-        <p class="faq-body">Each license covers one Mac. If you run multiple home servers, you'll need a license per machine. You can deactivate and move the license if you switch Macs.</p>
+        <summary data-i18n="faq.q5">Can I use Gatey on multiple Macs?</summary>
+        <p class="faq-body" data-i18n="faq.a5">Each license covers one Mac. If you run multiple home servers, you'll need a license per machine. You can deactivate and move the license if you switch Macs.</p>
       </details>
       <details>
-        <summary>Do all notification channels work without limits?</summary>
-        <p class="faq-body">Gatey respects each channel's official rate limits. Some messengers (like KakaoTalk and WhatsApp) restrict bulk sending. Gatey is intentionally conservative and will notify you when a channel limit is reached.</p>
+        <summary data-i18n="faq.q6">Do all notification channels work without limits?</summary>
+        <p class="faq-body" data-i18n="faq.a6">Gatey respects each channel's official rate limits. Some messengers (like KakaoTalk) restrict bulk sending. Gatey is intentionally conservative and will notify you when a channel limit is reached.</p>
       </details>
       <details>
-        <summary>What happens when the 7-day trial expires?</summary>
-        <p class="faq-body">macOS notifications keep working — you'll still see alerts in Notification Center. External channels (Slack, KakaoTalk, etc.) will pause until you activate a license. No data is deleted.</p>
+        <summary data-i18n="faq.q7">What happens when the 7-day trial expires?</summary>
+        <p class="faq-body" data-i18n="faq.a7">macOS notifications keep working — you'll still see alerts in Notification Center. External channels (Slack, KakaoTalk, etc.) will pause until you activate a license. No data is deleted.</p>
       </details>
       <details>
-        <summary>I just bought — where do I enter my license key?</summary>
-        <p class="faq-body">Open Gatey → click the menu bar icon → Settings → License tab. Paste your key from the purchase email. If you don't see the email, check your spam folder or use the Paddle customer portal link in your receipt.</p>
+        <summary data-i18n="faq.q8">I just bought — where do I enter my license key?</summary>
+        <p class="faq-body" data-i18n="faq.a8">Open Gatey → click the menu bar icon → Settings → License tab. Paste your key from the purchase email.</p>
       </details>
     </div>
   </div>
@@ -872,14 +882,279 @@
 <!-- ── Footer ── -->
 <footer>
   <div class="footer-links">
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Service</a>
-    <a href="refund.html">Refund Policy</a>
-    <a href="mailto:hello@oovelo.com">Support</a>
-    <a href="https://github.com/dongeui/Gatey/releases">Releases</a>
+    <a href="privacy.html" data-i18n="foot.privacy">Privacy Policy</a>
+    <a href="terms.html" data-i18n="foot.terms">Terms of Service</a>
+    <a href="refund.html" data-i18n="foot.refund">Refund Policy</a>
+    <a href="mailto:hi@oovelo.com" data-i18n="foot.support">Support</a>
+    <a href="https://github.com/dongeui/homebrew-gatey/releases" data-i18n="foot.releases">Releases</a>
   </div>
-  <p>Made by <a href="https://oovelo.com">Oovelo</a> · © 2026 Oovelo. All rights reserved.</p>
+  <p>Made by <a href="https://oovelo.com">Oovelo</a> · <span data-i18n="foot.copy">© 2026 Oovelo. All rights reserved.</span></p>
 </footer>
 
+<script>
+const T = {
+  en: {
+    'nav.features': 'Features', 'nav.pricing': 'Pricing', 'nav.faq': 'FAQ', 'nav.support': 'Support', 'nav.cta': 'Try Free',
+    'hero.badge': 'SSH Security Alerts for Mac',
+    'hero.h1': 'Know the moment<br>someone logs in.',
+    'hero.sub': 'Gatey monitors SSH events on your Mac and sends instant alerts to Slack, KakaoTalk, Telegram, Discord, and more — straight from your menu bar.',
+    'hero.cta1': '↓ Start 7-Day Free Trial', 'hero.cta2': 'See how it works',
+    'hero.note': 'macOS 13–15+ compatible · No account required · Local detection',
+    'feat.label': 'Why Gatey',
+    'feat.title': 'SSH logins happen silently.<br>Gatey changes that.',
+    'feat.desc': "Whether it's a Mac mini home server, a MacBook left at home, or an AI workstation — if SSH is running, Gatey watches it.",
+    'feat.rt.title': 'Real-time detection', 'feat.rt.desc': 'Gatey streams macOS system logs locally — no polling delay, no cloud dependency for detection.',
+    'feat.sc.title': 'Smart classification', 'feat.sc.desc': 'Not just "login success." Gatey labels new IPs, root logins, off-hours access, repeated failures, and brute-force patterns separately.',
+    'feat.wl.title': 'Whitelist & noise control', 'feat.wl.desc': 'Add trusted IPs to the whitelist. Toggle alerts per entry. Throttling keeps your channels clean during brute-force bursts.',
+    'feat.wr.title': 'Weekly reports', 'feat.wr.desc': 'Every Monday, Gatey sends a summary — logins, failures, new IPs, brute-force cases — to your preferred channel.',
+    'feat.ml.title': 'Multilingual', 'feat.ml.desc': 'UI and alert text in English, 한국어, 日本語, and 简体中文. Follows system language on first launch.',
+    'feat.nb.title': 'Native menu bar app', 'feat.nb.desc': 'Sits quietly in your menu bar. Lightweight, no background service accounts, no kernel extensions.',
+    'feat.mcos.title': 'Works on latest macOS', 'feat.mcos.desc': 'macOS 15 Sequoia+ changed how SSH processes run. Gatey handles both sshd and sshd-session — so it keeps working after macOS upgrades.',
+    'evts.label': 'What Gatey detects', 'evts.title': 'Every SSH event that matters.',
+    'evts.desc': 'Gatey goes beyond raw log lines — it reads the context and tells you what actually happened.',
+    'evts.e1': 'Successful login from new external IP', 'evts.e2': 'root login',
+    'evts.e3': 'Login success after repeated failures', 'evts.e4': 'Off-hours access',
+    'evts.e5': 'Brute-force pattern detected', 'evts.e6': 'Repeated authentication failures',
+    'evts.notif.time': 'Just now', 'evts.notif.title': '🚨 Brute-force attempt detected',
+    'evts.notif.body': 'IP: 203.0.113.42 · 14 failures in 60s<br>This IP has not been seen before.<br><span style="color:var(--yellow)">→ Consider adding to firewall rules</span>',
+    'price.label': 'Pricing', 'price.title': 'Simple, one-time pricing.',
+    'price.desc': 'No subscription. Pay once, use forever — on one Mac.',
+    'price.tag': 'Launch Price', 'price.lifetime': 'Lifetime license · 1 Mac',
+    'price.f1': 'All current SSH alert features', 'price.f2': 'All 6 notification channels',
+    'price.f3': 'Weekly reports + in-app report', 'price.f4': 'Multilingual UI (EN / KO / JA / ZH)',
+    'price.f5': 'Free updates until next major release', 'price.f6': 'Early buyers included in next major update',
+    'price.cta': 'Start 7-Day Free Trial', 'price.note': 'No credit card required for trial · macOS 13+',
+    'road.label': 'Roadmap', 'road.title': 'Starting with SSH.<br>Growing into a full home server watchdog.',
+    'road.desc': "Gatey is built to expand. Today it's your SSH alert layer. Next, it becomes the lightweight security hub for everything running on your Mac.",
+    'road.now': 'Available Now', 'road.next': 'Coming Next · 2026 H2',
+    'road.now.title': 'SSH Security Alerts', 'road.next.title': 'Home Server Watchdog',
+    'road.now.i1': 'Login success & failure detection', 'road.now.i2': 'New IP, root, brute-force classification',
+    'road.now.i3': 'Slack, Discord, Telegram, LINE, KakaoTalk, macOS', 'road.now.i4': 'Whitelist with per-entry mute toggle',
+    'road.now.i5': 'Weekly reports + in-app report view', 'road.now.i6': 'English / 한국어 / 日本語 / 简体中文',
+    'road.next.i1': 'sudo / su privilege escalation detection', 'road.next.i2': 'Apple Remote Desktop & Screen Sharing alerts',
+    'road.next.i3': 'Firewall & sharing service change detection', 'road.next.i4': 'Unified system event timeline',
+    'road.next.i5': 'Integrated cross-event reporting',
+    'inst.label': 'Install', 'inst.title': 'Up and running in 30 seconds.',
+    'inst.desc': 'Install via Homebrew, or download the DMG directly from GitHub Releases.',
+    'inst.copy': 'Copy', 'inst.copied': 'Copied!',
+    'inst.dmg': 'Or ', 'inst.dmg.link': 'download the latest DMG from GitHub Releases.',
+    'inst.notary': "Gatey is notarized by Apple for your safety. On first launch, you'll be asked to grant Full Disk Access so it can read SSH logs — nothing else is sent outside your Mac.",
+    'faq.label': 'FAQ', 'faq.title': 'Common questions.',
+    'faq.q1': 'Does Gatey block attacks?', 'faq.a1': "No. Gatey is a monitoring and alerting tool — not a firewall. It tells you what's happening so you can decide what to do. Blocking is out of scope by design.",
+    'faq.q2': 'Will it slow down my Mac?', 'faq.a2': "Gatey reads macOS system logs using the standard log stream command. There's no background service, kernel extension, or network traffic. CPU and memory impact is minimal.",
+    'faq.q3': 'Does Gatey send my SSH logs anywhere?', 'faq.a3': "No. SSH event detection happens entirely on your Mac. Gatey only sends structured alert payloads (IP address, event type, timestamp) to the notification channels you configure.",
+    'faq.q4': 'Why does Gatey need Full Disk Access?', 'faq.a4': 'macOS restricts access to system logs by default. Full Disk Access allows Gatey to read sshd log events. Without it, monitoring cannot start.',
+    'faq.q5': 'Can I use Gatey on multiple Macs?', 'faq.a5': "Each license covers one Mac. If you run multiple home servers, you'll need a license per machine. You can deactivate and move the license if you switch Macs.",
+    'faq.q6': 'Do all notification channels work without limits?', 'faq.a6': "Gatey respects each channel's official rate limits. Some messengers (like KakaoTalk) restrict bulk sending. Gatey is intentionally conservative and will notify you when a channel limit is reached.",
+    'faq.q7': 'What happens when the 7-day trial expires?', 'faq.a7': "macOS notifications keep working — you'll still see alerts in Notification Center. External channels (Slack, KakaoTalk, etc.) will pause until you activate a license. No data is deleted.",
+    'faq.q8': 'I just bought — where do I enter my license key?', 'faq.a8': 'Open Gatey → click the menu bar icon → Settings → License tab. Paste your key from the purchase email.',
+    'foot.privacy': 'Privacy Policy', 'foot.terms': 'Terms of Service', 'foot.refund': 'Refund Policy',
+    'foot.support': 'Support', 'foot.releases': 'Releases', 'foot.copy': '© 2026 Oovelo. All rights reserved.',
+  },
+  ko: {
+    'nav.features': '기능', 'nav.pricing': '가격', 'nav.faq': 'FAQ', 'nav.support': '고객지원', 'nav.cta': '무료 체험',
+    'hero.badge': 'Mac용 SSH 보안 알림',
+    'hero.h1': '누가 접속했는지<br>바로 알 수 있어요.',
+    'hero.sub': 'Gatey는 Mac의 SSH 이벤트를 실시간으로 감지해 Slack, 카카오톡, Telegram, Discord 등으로 즉시 알림을 보냅니다.',
+    'hero.cta1': '↓ 7일 무료 체험 시작', 'hero.cta2': '기능 살펴보기',
+    'hero.note': 'macOS 13–15+ 호환 · 계정 불필요 · 로컬 감지',
+    'feat.label': 'Gatey를 쓰는 이유',
+    'feat.title': 'SSH 접속은 조용히 일어납니다.<br>Gatey가 바꿔드립니다.',
+    'feat.desc': '홈서버 맥미니, 집에 두고 온 맥북, AI 워크스테이션 — SSH가 실행 중이라면 Gatey가 지켜봅니다.',
+    'feat.rt.title': '실시간 감지', 'feat.rt.desc': 'Gatey는 macOS 시스템 로그를 로컬에서 스트리밍합니다. 감지 지연 없고, 클라우드 의존 없음.',
+    'feat.sc.title': '스마트 분류', 'feat.sc.desc': '단순 "로그인 성공"이 아닙니다. 새 IP, root 로그인, 비정상 시간대, 반복 실패, 브루트포스 패턴을 별도로 분류합니다.',
+    'feat.wl.title': '화이트리스트 & 노이즈 제거', 'feat.wl.desc': '신뢰하는 IP를 화이트리스트에 추가하세요. 항목별로 알림을 끄거나 켤 수 있습니다. 쓰로틀링으로 채널을 깔끔하게 유지합니다.',
+    'feat.wr.title': '주간 리포트', 'feat.wr.desc': '매주 월요일, Gatey가 로그인, 실패, 새 IP, 브루트포스 현황을 선호하는 채널로 요약해서 보냅니다.',
+    'feat.ml.title': '다국어 지원', 'feat.ml.desc': 'UI와 알림 텍스트를 영어, 한국어, 日本語, 简体中文으로 제공합니다. 첫 실행 시 시스템 언어를 따릅니다.',
+    'feat.nb.title': '네이티브 메뉴바 앱', 'feat.nb.desc': '메뉴바에 조용히 자리잡습니다. 백그라운드 서비스 계정, 커널 확장 없이 가볍게 동작합니다.',
+    'feat.mcos.title': '최신 macOS 완벽 지원', 'feat.mcos.desc': 'macOS 15 Sequoia부터 SSH 프로세스 방식이 바뀌었습니다. Gatey는 sshd와 sshd-session 양쪽을 모두 처리해 업그레이드 후에도 계속 작동합니다.',
+    'evts.label': 'Gatey가 감지하는 것들', 'evts.title': '중요한 모든 SSH 이벤트.',
+    'evts.desc': 'Gatey는 단순 로그 라인을 넘어 컨텍스트를 읽고 무슨 일이 있었는지 정확히 알려드립니다.',
+    'evts.e1': '새 외부 IP에서 로그인 성공', 'evts.e2': 'root 로그인',
+    'evts.e3': '반복 실패 후 로그인 성공', 'evts.e4': '비정상 시간대 접속',
+    'evts.e5': '브루트포스 패턴 감지', 'evts.e6': '인증 반복 실패',
+    'evts.notif.time': '방금 전', 'evts.notif.title': '🚨 브루트포스 시도 감지',
+    'evts.notif.body': 'IP: 203.0.113.42 · 60초 내 14회 실패<br>이 IP는 처음 보는 주소입니다.<br><span style="color:var(--yellow)">→ 방화벽 규칙 추가를 검토하세요</span>',
+    'price.label': '가격', 'price.title': '심플한 일회성 가격.',
+    'price.desc': '구독 없음. 한 번 결제, 영구 사용 — Mac 1대 기준.',
+    'price.tag': '런칭가', 'price.lifetime': '영구 라이선스 · Mac 1대',
+    'price.f1': '현재 모든 SSH 알림 기능', 'price.f2': '6개 알림 채널 전체',
+    'price.f3': '주간 리포트 + 인앱 리포트', 'price.f4': '다국어 UI (EN / KO / JA / ZH)',
+    'price.f5': '다음 메이저 업데이트까지 무료 업데이트', 'price.f6': '초기 구매자는 다음 메이저 업데이트 포함',
+    'price.cta': '7일 무료 체험 시작', 'price.note': '체험 시 신용카드 불필요 · macOS 13+',
+    'road.label': '로드맵', 'road.title': 'SSH부터 시작해서<br>홈서버 완전 감시 허브로 성장합니다.',
+    'road.desc': 'Gatey는 확장을 위해 만들어졌습니다. 오늘은 SSH 알림 레이어, 다음은 Mac에서 실행되는 모든 것을 위한 가벼운 보안 허브가 됩니다.',
+    'road.now': '지금 사용 가능', 'road.next': '다음 예정 · 2026 하반기',
+    'road.now.title': 'SSH 보안 알림', 'road.next.title': '홈서버 완전 감시',
+    'road.now.i1': '로그인 성공 & 실패 감지', 'road.now.i2': '새 IP, root, 브루트포스 분류',
+    'road.now.i3': 'Slack, Discord, Telegram, LINE, KakaoTalk, macOS', 'road.now.i4': '항목별 알림 토글이 있는 화이트리스트',
+    'road.now.i5': '주간 리포트 + 인앱 리포트 뷰', 'road.now.i6': 'English / 한국어 / 日本語 / 简体中文',
+    'road.next.i1': 'sudo / su 권한 상승 감지', 'road.next.i2': 'Apple Remote Desktop & 화면 공유 알림',
+    'road.next.i3': '방화벽 & 공유 서비스 변화 감지', 'road.next.i4': '통합 시스템 이벤트 타임라인',
+    'road.next.i5': '크로스 이벤트 통합 리포트',
+    'inst.label': '설치', 'inst.title': '30초면 시작할 수 있어요.',
+    'inst.desc': 'Homebrew로 설치하거나 GitHub Releases에서 DMG를 직접 다운로드하세요.',
+    'inst.copy': '복사', 'inst.copied': '복사됨!',
+    'inst.dmg': '또는 ', 'inst.dmg.link': '최신 DMG를 GitHub Releases에서 다운로드하세요.',
+    'inst.notary': 'Apple 공증을 통과한 앱입니다. 처음 실행 시 Full Disk Access 권한을 요청합니다 — SSH 로그를 읽기 위해 필요하며, 그 외 어떤 정보도 Mac 밖으로 나가지 않습니다.',
+    'faq.label': 'FAQ', 'faq.title': '자주 묻는 질문.',
+    'faq.q1': 'Gatey가 공격을 차단하나요?', 'faq.a1': '아니요. Gatey는 모니터링 및 알림 도구이지 방화벽이 아닙니다. 무슨 일이 일어나고 있는지 알려주면 어떻게 할지는 사용자가 결정합니다.',
+    'faq.q2': 'Mac이 느려지나요?', 'faq.a2': 'Gatey는 표준 log stream 명령어로 macOS 시스템 로그를 읽습니다. 백그라운드 서비스, 커널 확장, 네트워크 트래픽이 없습니다. CPU 및 메모리 영향이 최소화됩니다.',
+    'faq.q3': 'Gatey가 SSH 로그를 외부로 보내나요?', 'faq.a3': '아니요. SSH 이벤트 감지는 전적으로 Mac에서 이루어집니다. Gatey는 설정한 알림 채널로 구조화된 알림 페이로드(IP 주소, 이벤트 유형, 타임스탬프)만 전송합니다.',
+    'faq.q4': 'Full Disk Access가 왜 필요한가요?', 'faq.a4': 'macOS는 기본적으로 시스템 로그 접근을 제한합니다. Full Disk Access가 있어야 Gatey가 sshd 로그 이벤트를 읽을 수 있습니다.',
+    'faq.q5': '여러 Mac에서 사용할 수 있나요?', 'faq.a5': '라이선스 1개는 Mac 1대에 적용됩니다. 여러 홈서버를 운영한다면 각 기기마다 라이선스가 필요합니다. Mac을 교체할 경우 라이선스를 비활성화하고 이전할 수 있습니다.',
+    'faq.q6': '알림 채널에 제한이 없나요?', 'faq.a6': 'Gatey는 각 채널의 공식 발송 한도를 준수합니다. 카카오톡 등 일부 메신저는 대량 발송을 제한합니다. Gatey는 보수적으로 운영하며 채널 한도에 도달하면 알려드립니다.',
+    'faq.q7': '7일 체험이 끝나면 어떻게 되나요?', 'faq.a7': 'macOS 알림은 계속 작동합니다. 외부 채널(Slack, 카카오톡 등)은 라이선스를 활성화할 때까지 일시 중지됩니다. 데이터는 삭제되지 않습니다.',
+    'faq.q8': '라이선스 키는 어디에 입력하나요?', 'faq.a8': 'Gatey 실행 → 메뉴바 아이콘 클릭 → 설정 → 라이선스 탭. 구매 이메일에서 키를 복사해 붙여넣으세요.',
+    'foot.privacy': '개인정보처리방침', 'foot.terms': '이용약관', 'foot.refund': '환불 정책',
+    'foot.support': '고객지원', 'foot.releases': '릴리즈', 'foot.copy': '© 2026 Oovelo. All rights reserved.',
+  },
+  ja: {
+    'nav.features': '機能', 'nav.pricing': '価格', 'nav.faq': 'FAQ', 'nav.support': 'サポート', 'nav.cta': '無料で試す',
+    'hero.badge': 'Mac 用 SSH セキュリティアラート',
+    'hero.h1': '誰かがログインした瞬間を<br>すぐに知れる。',
+    'hero.sub': 'GateyはMacのSSHイベントをリアルタイムで監視し、Slack、KakaoTalk、Telegram、Discordなどに即時アラートを送信します。',
+    'hero.cta1': '↓ 7日間無料トライアル開始', 'hero.cta2': '仕組みを見る',
+    'hero.note': 'macOS 13–15+ 対応 · アカウント不要 · ローカル検知',
+    'feat.label': 'Gateyを使う理由',
+    'feat.title': 'SSHログインは無音で起きます。<br>Gateyがそれを変えます。',
+    'feat.desc': 'Mac miniホームサーバー、自宅に置いたMacBook、AIワークステーション — SSHが動いていれば、Gateyが監視します。',
+    'feat.rt.title': 'リアルタイム検知', 'feat.rt.desc': 'GateyはmacOSシステムログをローカルでストリーミング — 検知遅延なし、クラウド依存なし。',
+    'feat.sc.title': 'スマート分類', 'feat.sc.desc': '単なる「ログイン成功」ではありません。新規IP、rootログイン、時間外アクセス、繰り返し失敗、ブルートフォースを個別に分類します。',
+    'feat.wl.title': 'ホワイトリスト＆ノイズ制御', 'feat.wl.desc': '信頼済みIPをホワイトリストに追加。エントリごとにアラートをON/OFF。ブルートフォース中もチャンネルをすっきり保ちます。',
+    'feat.wr.title': '週次レポート', 'feat.wr.desc': '毎週月曜日、Gateyがログイン・失敗・新規IP・ブルートフォースのサマリーを希望のチャンネルに送信します。',
+    'feat.ml.title': '多言語対応', 'feat.ml.desc': 'UIとアラートテキストをEnglish、한국어、日本語、简体中文で提供。初回起動時はシステム言語に従います。',
+    'feat.nb.title': 'ネイティブ メニューバーアプリ', 'feat.nb.desc': 'メニューバーに静かに収まります。バックグラウンドサービスアカウントやカーネル拡張は不要です。',
+    'feat.mcos.title': '最新macOSに完全対応', 'feat.mcos.desc': 'macOS 15 Sequoia+でSSHプロセスの動作方式が変わりました。Gateyはsshd・sshd-session両方を処理し、アップグレード後も動作し続けます。',
+    'evts.label': 'Gateyが検知するもの', 'evts.title': '重要なすべてのSSHイベント。',
+    'evts.desc': 'Gateyは生のログ行を超えてコンテキストを読み取り、何が起きたかを正確に伝えます。',
+    'evts.e1': '新規外部IPからのログイン成功', 'evts.e2': 'rootログイン',
+    'evts.e3': '繰り返し失敗後のログイン成功', 'evts.e4': '時間外アクセス',
+    'evts.e5': 'ブルートフォースパターン検知', 'evts.e6': '繰り返しの認証失敗',
+    'evts.notif.time': 'たった今', 'evts.notif.title': '🚨 ブルートフォース試行を検知',
+    'evts.notif.body': 'IP: 203.0.113.42 · 60秒で14回失敗<br>このIPは初めて検知されました。<br><span style="color:var(--yellow)">→ ファイアウォールへの追加を検討してください</span>',
+    'price.label': '価格', 'price.title': 'シンプルな買い切り価格。',
+    'price.desc': 'サブスクなし。一度払えば永久に使える — 1台のMac。',
+    'price.tag': 'ローンチ価格', 'price.lifetime': '永久ライセンス · 1台のMac',
+    'price.f1': '現在のすべてのSSHアラート機能', 'price.f2': '6つすべての通知チャンネル',
+    'price.f3': '週次レポート＋アプリ内レポート', 'price.f4': '多言語UI (EN / KO / JA / ZH)',
+    'price.f5': '次のメジャーリリースまで無料アップデート', 'price.f6': '早期購入者は次のメジャーアップデート含む',
+    'price.cta': '7日間無料トライアルを開始', 'price.note': 'トライアルはクレジットカード不要 · macOS 13+',
+    'road.label': 'ロードマップ', 'road.title': 'SSHから始まり、<br>ホームサーバー完全監視ハブへ成長します。',
+    'road.desc': 'Gateyは拡張を前提に設計されています。今日はSSHアラートレイヤー、次はMacで動くすべてのための軽量セキュリティハブになります。',
+    'road.now': '今すぐ利用可能', 'road.next': '次のリリース · 2026年下半期',
+    'road.now.title': 'SSHセキュリティアラート', 'road.next.title': 'ホームサーバー監視',
+    'road.now.i1': 'ログイン成功＆失敗の検知', 'road.now.i2': '新規IP・root・ブルートフォースの分類',
+    'road.now.i3': 'Slack、Discord、Telegram、LINE、KakaoTalk、macOS', 'road.now.i4': 'エントリごとのミュートトグル付きホワイトリスト',
+    'road.now.i5': '週次レポート＋アプリ内レポートビュー', 'road.now.i6': 'English / 한국어 / 日本語 / 简体中文',
+    'road.next.i1': 'sudo / su 権限昇格の検知', 'road.next.i2': 'Apple Remote Desktop＆画面共有アラート',
+    'road.next.i3': 'ファイアウォール＆共有サービス変更の検知', 'road.next.i4': '統合システムイベントタイムライン',
+    'road.next.i5': 'クロスイベント統合レポート',
+    'inst.label': 'インストール', 'inst.title': '30秒で動き始める。',
+    'inst.desc': 'Homebrewでインストールするか、GitHub ReleasesからDMGを直接ダウンロードしてください。',
+    'inst.copy': 'コピー', 'inst.copied': 'コピー済み!',
+    'inst.dmg': 'または ', 'inst.dmg.link': 'GitHub Releasesから最新のDMGをダウンロードしてください。',
+    'inst.notary': 'GateyはApple公証済みで安全です。初回起動時にFull Disk Accessを求めます — SSHログ読み取りのためで、それ以外の情報はMac外に送信されません。',
+    'faq.label': 'FAQ', 'faq.title': 'よくある質問。',
+    'faq.q1': 'Gateyは攻撃をブロックしますか？', 'faq.a1': 'いいえ。Gateyは監視・アラートツールであり、ファイアウォールではありません。何が起きているかを伝えるので、対応はユーザーが判断します。',
+    'faq.q2': 'Macが重くなりますか？', 'faq.a2': 'GateyはmacOSの標準log streamコマンドでシステムログを読み取ります。バックグラウンドサービス、カーネル拡張、ネットワークトラフィックは発生しません。CPU・メモリへの影響は最小限です。',
+    'faq.q3': 'SSHログが外部に送信されますか？', 'faq.a3': 'いいえ。SSH検知はすべてMac上で行われます。Gateyは設定した通知チャンネルにアラートペイロード（IPアドレス・イベント種別・タイムスタンプ）のみを送信します。',
+    'faq.q4': 'なぜFull Disk Accessが必要ですか？', 'faq.a4': 'macOSはデフォルトでシステムログへのアクセスを制限しています。Full Disk Accessにより、GateyがsshdログイベントをReadできるようになります。',
+    'faq.q5': '複数のMacで使えますか？', 'faq.a5': '1ライセンスは1台のMac対応です。複数のホームサーバーを運営する場合は、台数分のライセンスが必要です。Macを買い替える場合はライセンスを移行できます。',
+    'faq.q6': '通知チャンネルに制限はありますか？', 'faq.a6': 'Gateyは各チャンネルの公式レート制限を尊重します。KakaoTalkなど一部のメッセンジャーは大量送信を制限します。Gateyは保守的に運用し、チャンネル制限に達したらお知らせします。',
+    'faq.q7': '7日間のトライアルが終わると？', 'faq.a7': 'macOS通知は引き続き機能します。外部チャンネル（Slack、KakaoTalkなど）はライセンスを有効化するまで一時停止されます。データは削除されません。',
+    'faq.q8': 'ライセンスキーはどこで入力しますか？', 'faq.a8': 'Gateyを開く → メニューバーアイコンをクリック → 設定 → ライセンスタブ。購入メールからキーを貼り付けてください。',
+    'foot.privacy': 'プライバシーポリシー', 'foot.terms': '利用規約', 'foot.refund': '返金ポリシー',
+    'foot.support': 'サポート', 'foot.releases': 'リリース', 'foot.copy': '© 2026 Oovelo. All rights reserved.',
+  },
+  zh: {
+    'nav.features': '功能', 'nav.pricing': '价格', 'nav.faq': '常见问题', 'nav.support': '支持', 'nav.cta': '免费试用',
+    'hero.badge': 'Mac SSH 安全告警',
+    'hero.h1': '第一时间知道<br>谁登录了你的 Mac。',
+    'hero.sub': 'Gatey 实时监控 Mac 上的 SSH 事件，并立即向 Slack、KakaoTalk、Telegram、Discord 等发送警报。',
+    'hero.cta1': '↓ 开始 7 天免费试用', 'hero.cta2': '了解功能',
+    'hero.note': '支持 macOS 13–15+ · 无需账号 · 本地检测',
+    'feat.label': '为什么选择 Gatey',
+    'feat.title': 'SSH 登录悄无声息。<br>Gatey 改变这一切。',
+    'feat.desc': '无论是 Mac mini 家庭服务器、留在家里的 MacBook，还是 AI 工作站 — 只要 SSH 在运行，Gatey 就在守护。',
+    'feat.rt.title': '实时检测', 'feat.rt.desc': 'Gatey 在本地流式读取 macOS 系统日志，无检测延迟，无云端依赖。',
+    'feat.sc.title': '智能分类', 'feat.sc.desc': '不只是"登录成功"。Gatey 会分别标记新 IP、root 登录、非常规时段访问、多次失败和暴力破解模式。',
+    'feat.wl.title': '白名单与降噪', 'feat.wl.desc': '将可信 IP 加入白名单，按条目控制告警开关，节流机制让频道在暴力破解期间保持整洁。',
+    'feat.wr.title': '每周报告', 'feat.wr.desc': '每周一，Gatey 将登录次数、失败情况、新 IP 和暴力破解汇总发送到你的首选频道。',
+    'feat.ml.title': '多语言支持', 'feat.ml.desc': '应用界面和告警文本支持 English、한국어、日本語、简体中文，首次启动时跟随系统语言。',
+    'feat.nb.title': '原生菜单栏应用', 'feat.nb.desc': '静静坐在菜单栏中，无后台服务账户，无内核扩展，轻量运行。',
+    'feat.mcos.title': '支持最新 macOS', 'feat.mcos.desc': 'macOS 15 Sequoia+ 改变了 SSH 进程的运行方式，Gatey 同时处理 sshd 和 sshd-session，macOS 升级后依然正常工作。',
+    'evts.label': 'Gatey 能检测什么', 'evts.title': '每一个关键 SSH 事件。',
+    'evts.desc': 'Gatey 不只是读取原始日志，而是理解上下文，精准告诉你发生了什么。',
+    'evts.e1': '新外部 IP 登录成功', 'evts.e2': 'root 登录',
+    'evts.e3': '多次失败后登录成功', 'evts.e4': '非常规时段访问',
+    'evts.e5': '检测到暴力破解模式', 'evts.e6': '重复认证失败',
+    'evts.notif.time': '刚刚', 'evts.notif.title': '🚨 检测到暴力破解尝试',
+    'evts.notif.body': 'IP: 203.0.113.42 · 60秒内14次失败<br>该 IP 从未出现过。<br><span style="color:var(--yellow)">→ 建议添加到防火墙规则</span>',
+    'price.label': '价格', 'price.title': '简单，一次买断。',
+    'price.desc': '无需订阅，一次付费，永久使用 — 限 1 台 Mac。',
+    'price.tag': '发布特惠价', 'price.lifetime': '永久授权 · 1 台 Mac',
+    'price.f1': '所有 SSH 告警功能', 'price.f2': '全部 6 个通知渠道',
+    'price.f3': '每周报告 + 应用内报告', 'price.f4': '多语言界面 (EN / KO / JA / ZH)',
+    'price.f5': '下一主要版本前免费更新', 'price.f6': '早期购买者享受下一主要更新',
+    'price.cta': '开始 7 天免费试用', 'price.note': '试用无需信用卡 · macOS 13+',
+    'road.label': '路线图', 'road.title': '从 SSH 出发，<br>成长为完整的家庭服务器监控中心。',
+    'road.desc': 'Gatey 为扩展而生。今天是 SSH 告警层，下一步成为 Mac 上所有服务的轻量安全中心。',
+    'road.now': '现已可用', 'road.next': '即将推出 · 2026 下半年',
+    'road.now.title': 'SSH 安全告警', 'road.next.title': '家庭服务器守护',
+    'road.now.i1': '登录成功 & 失败检测', 'road.now.i2': '新 IP、root、暴力破解分类',
+    'road.now.i3': 'Slack、Discord、Telegram、LINE、KakaoTalk、macOS', 'road.now.i4': '支持按条目静音的白名单',
+    'road.now.i5': '每周报告 + 应用内报告视图', 'road.now.i6': 'English / 한국어 / 日本語 / 简体中文',
+    'road.next.i1': 'sudo / su 权限提升检测', 'road.next.i2': 'Apple Remote Desktop & 屏幕共享告警',
+    'road.next.i3': '防火墙 & 共享服务变更检测', 'road.next.i4': '统一系统事件时间线',
+    'road.next.i5': '跨事件综合报告',
+    'inst.label': '安装', 'inst.title': '30 秒内启动运行。',
+    'inst.desc': '通过 Homebrew 安装，或从 GitHub Releases 直接下载 DMG。',
+    'inst.copy': '复制', 'inst.copied': '已复制!',
+    'inst.dmg': '或 ', 'inst.dmg.link': '从 GitHub Releases 下载最新 DMG。',
+    'inst.notary': 'Gatey 已通过 Apple 公证，安全可信。首次启动时会请求完整磁盘访问权限，仅用于读取 SSH 日志，其他任何信息不会离开你的 Mac。',
+    'faq.label': '常见问题', 'faq.title': '常见问题解答。',
+    'faq.q1': 'Gatey 能拦截攻击吗？', 'faq.a1': '不能。Gatey 是监控和告警工具，不是防火墙。它告诉你发生了什么，由你决定如何应对。',
+    'faq.q2': '会让 Mac 变慢吗？', 'faq.a2': 'Gatey 使用标准 log stream 命令读取 macOS 系统日志，无后台服务、无内核扩展、无网络流量，对 CPU 和内存影响极小。',
+    'faq.q3': 'Gatey 会把 SSH 日志发送到外部吗？', 'faq.a3': '不会。SSH 事件检测完全在本地 Mac 上进行。Gatey 只向你配置的通知渠道发送结构化告警（IP 地址、事件类型、时间戳）。',
+    'faq.q4': '为什么需要完整磁盘访问权限？', 'faq.a4': 'macOS 默认限制对系统日志的访问。完整磁盘访问权限让 Gatey 能够读取 sshd 日志事件，没有它监控无法启动。',
+    'faq.q5': '可以在多台 Mac 上使用吗？', 'faq.a5': '每个授权仅适用于一台 Mac。如果运营多台家庭服务器，需要为每台设备购买授权。换 Mac 时可以停用并转移授权。',
+    'faq.q6': '通知渠道有限制吗？', 'faq.a6': 'Gatey 遵守各渠道的官方发送限制。KakaoTalk 等部分 Messenger 限制批量发送，Gatey 会保守运营，并在达到限制时通知你。',
+    'faq.q7': '7 天试用到期后怎样？', 'faq.a7': 'macOS 通知继续正常工作。外部渠道（Slack、KakaoTalk 等）将暂停，直到激活授权为止。数据不会被删除。',
+    'faq.q8': '在哪里输入授权码？', 'faq.a8': '打开 Gatey → 点击菜单栏图标 → 设置 → 授权标签页。从购买邮件中复制粘贴授权码。',
+    'foot.privacy': '隐私政策', 'foot.terms': '服务条款', 'foot.refund': '退款政策',
+    'foot.support': '支持', 'foot.releases': '发布', 'foot.copy': '© 2026 Oovelo. All rights reserved.',
+  }
+};
+
+let currentLang = localStorage.getItem('gatey-lang') || navigator.language.startsWith('ko') ? 'ko' : navigator.language.startsWith('ja') ? 'ja' : navigator.language.startsWith('zh') ? 'zh' : 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('gatey-lang', lang);
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+function copyInstall(btn) {
+  navigator.clipboard.writeText('brew install --cask dongeui/gatey/gatey').then(() => {
+    btn.textContent = T[currentLang]['inst.copied'] || 'Copied!';
+    setTimeout(() => { btn.textContent = T[currentLang]['inst.copy'] || 'Copy'; }, 1500);
+  });
+}
+
+setLang(currentLang);
+</script>
 </body>
 </html>
