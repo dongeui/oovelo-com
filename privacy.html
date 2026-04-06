@@ -42,17 +42,18 @@
 
     .lang-toggle {
       display: flex;
-      gap: 8px;
+      gap: 4px;
     }
 
     .lang-btn {
       background: none;
       border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 13px;
+      padding: 5px 10px;
+      border-radius: 16px;
+      font-size: 12px;
       cursor: pointer;
+      font-family: inherit;
       transition: border-color 0.15s, color 0.15s;
     }
 
@@ -186,8 +187,10 @@
 <nav>
   <a href="index.html" class="nav-logo">Gatey</a>
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('en')">English</button>
-    <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
+    <button class="lang-btn" onclick="setLang('ko')" data-lang="ko">한국어</button>
+    <button class="lang-btn" onclick="setLang('ja')" data-lang="ja">日本語</button>
+    <button class="lang-btn" onclick="setLang('zh')" data-lang="zh">中文</button>
   </div>
 </nav>
 
@@ -197,78 +200,43 @@
     <div class="doc-header">
       <p class="doc-label">Legal</p>
       <h1>Privacy Policy</h1>
-      <p class="doc-meta">Effective date: April 2026 · Oovelo · <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+      <p class="doc-meta">Effective date: April 2026 · Oovelo · <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
     </div>
-
     <div class="highlight-box">
       <p><strong>The short version:</strong> Gatey detects SSH events locally on your Mac. We collect only what's needed to manage your license — a hashed device identifier, your Mac's name, and your license key. We don't sell your data. We don't track usage.</p>
     </div>
-
     <h2>1. Who we are</h2>
-    <p>Gatey is a macOS menu bar application developed and operated by <strong>Oovelo</strong> ("we", "us", "our"). For privacy inquiries, contact us at <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>.</p>
-
+    <p>Gatey is a macOS menu bar application developed and operated by <strong>Oovelo</strong> ("we", "us", "our"). For privacy inquiries, contact us at <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>.</p>
     <h2>2. What we collect and why</h2>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr>
-            <th>Data</th>
-            <th>Purpose</th>
-            <th>Where stored</th>
-          </tr>
+          <tr><th>Data</th><th>Purpose</th><th>Where stored</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>License key</td>
-            <td>Verify your purchase and manage activation</td>
-            <td>Your Mac's Keychain + Supabase (our license server)</td>
-          </tr>
-          <tr>
-            <td>Hashed device fingerprint</td>
-            <td>Enforce the 1-Mac-per-license limit. The fingerprint is a one-way SHA-256 hash — we cannot reverse it to identify your hardware.</td>
-            <td>Supabase</td>
-          </tr>
-          <tr>
-            <td>Mac name</td>
-            <td>Display which device is activated in your license record (e.g. "John's Mac Mini")</td>
-            <td>Supabase</td>
-          </tr>
-          <tr>
-            <td>Email address &amp; payment info</td>
-            <td>Process your purchase and send your license key</td>
-            <td>Paddle (our payment processor) — we never see your card number</td>
-          </tr>
-          <tr>
-            <td>Notification channel tokens (Slack URL, Telegram token, etc.)</td>
-            <td>Send SSH alerts to the channels you configure</td>
-            <td>Your Mac's Keychain only — never sent to our servers</td>
-          </tr>
-          <tr>
-            <td>SSH event data</td>
-            <td>Detect login events and generate alerts</td>
-            <td>Your Mac only — never sent to our servers</td>
-          </tr>
+          <tr><td>License key</td><td>Verify your purchase and manage activation</td><td>Your Mac's Keychain + Supabase (our license server)</td></tr>
+          <tr><td>Hashed device fingerprint</td><td>Enforce the 1-Mac-per-license limit. The fingerprint is a one-way SHA-256 hash — we cannot reverse it to identify your hardware.</td><td>Supabase</td></tr>
+          <tr><td>Mac name</td><td>Display which device is activated in your license record (e.g. "John's Mac Mini")</td><td>Supabase</td></tr>
+          <tr><td>Email address &amp; payment info</td><td>Process your purchase and send your license key</td><td>Paddle (our payment processor) — we never see your card number</td></tr>
+          <tr><td>Notification channel tokens (Slack URL, Telegram token, etc.)</td><td>Send SSH alerts to the channels you configure</td><td>Your Mac's Keychain only — never sent to our servers</td></tr>
+          <tr><td>SSH event data</td><td>Detect login events and generate alerts</td><td>Your Mac only — never sent to our servers</td></tr>
         </tbody>
       </table>
     </div>
-
     <h2>3. Legal basis for processing (GDPR)</h2>
     <p>For users in the European Economic Area, we process personal data on the following legal bases:</p>
     <ul>
       <li><strong>Contract performance</strong> — license activation and validation are necessary to provide the service you purchased.</li>
       <li><strong>Legitimate interest</strong> — preventing fraudulent license use.</li>
     </ul>
-
     <h2>4. Data retention</h2>
     <p>License activation records are kept for as long as your license is active. When you deactivate your license, the activation record is removed from our license server. If you have not used the service for 3 years, we will delete your data.</p>
-
     <h2>5. Third-party services</h2>
     <ul>
       <li><strong>Supabase</strong> — license server infrastructure. Data is stored in the EU (AWS eu-central-1) by default. <a href="https://supabase.com/privacy" target="_blank">Supabase Privacy Policy</a></li>
       <li><strong>Paddle</strong> — payment processing. Paddle acts as the Merchant of Record and is responsible for payment data. <a href="https://www.paddle.com/legal/privacy" target="_blank">Paddle Privacy Policy</a></li>
     </ul>
     <p>We do not use advertising networks, analytics SDKs, or any other third-party data collection in the app.</p>
-
     <h2>6. Your rights</h2>
     <p>Depending on where you live, you may have the following rights:</p>
     <ul>
@@ -278,19 +246,15 @@
       <li><strong>Portability</strong> — receive your data in a machine-readable format.</li>
       <li><strong>Objection</strong> — object to processing based on legitimate interest.</li>
     </ul>
-    <p>To exercise any of these rights, email <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>. We will respond within 30 days.</p>
-
+    <p>To exercise any of these rights, email <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>. We will respond within 30 days.</p>
     <h2>7. California residents (CCPA)</h2>
-    <p>We do not sell personal information. We do not share personal information with third parties for cross-context behavioral advertising. California residents have the right to know, delete, and opt out of the sale of personal information — though we do not sell it.</p>
-
+    <p>We do not sell personal information. We do not share personal information with third parties for cross-context behavioral advertising.</p>
     <h2>8. Children</h2>
     <p>Gatey is not directed at children under 16. We do not knowingly collect data from children.</p>
-
     <h2>9. Changes to this policy</h2>
     <p>We may update this policy from time to time. Material changes will be announced via the app or on this page. The effective date at the top of this page will always reflect the latest version.</p>
-
     <h2>10. Contact</h2>
-    <p>Questions or requests: <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+    <p>Questions or requests: <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
   </div>
 </div>
 
@@ -300,71 +264,37 @@
     <div class="doc-header">
       <p class="doc-label">법적 고지</p>
       <h1>개인정보처리방침</h1>
-      <p class="doc-meta">시행일: 2026년 4월 · Oovelo · <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+      <p class="doc-meta">시행일: 2026년 4월 · Oovelo · <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
     </div>
-
     <div class="highlight-box">
       <p><strong>요약:</strong> Gatey는 SSH 이벤트를 사용자의 Mac에서 로컬로 감지합니다. 라이선스 관리에 필요한 최소한의 정보(해시된 기기 식별값, Mac 이름, 라이선스 키)만 수집합니다. 개인정보를 판매하거나, 이용 행태를 추적하지 않습니다.</p>
     </div>
-
     <h2>1. 운영자 정보</h2>
-    <p>Gatey는 <strong>Oovelo</strong>이 개발·운영하는 macOS 메뉴바 앱입니다. 개인정보 관련 문의는 <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>으로 연락해 주세요.</p>
-
+    <p>Gatey는 <strong>Oovelo</strong>이 개발·운영하는 macOS 메뉴바 앱입니다. 개인정보 관련 문의는 <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>으로 연락해 주세요.</p>
     <h2>2. 수집하는 정보와 목적</h2>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr>
-            <th>항목</th>
-            <th>수집 목적</th>
-            <th>저장 위치</th>
-          </tr>
+          <tr><th>항목</th><th>수집 목적</th><th>저장 위치</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>라이선스 키</td>
-            <td>구매 확인 및 라이선스 활성화 관리</td>
-            <td>Mac Keychain + Supabase(라이선스 서버)</td>
-          </tr>
-          <tr>
-            <td>해시된 기기 식별값</td>
-            <td>Mac 1대 제한 적용. SHA-256 단방향 해시로 처리되어 원본 하드웨어 정보를 역산할 수 없습니다.</td>
-            <td>Supabase</td>
-          </tr>
-          <tr>
-            <td>Mac 이름</td>
-            <td>라이선스 활성화 기록에서 기기를 식별하기 위해 표시 (예: "John의 Mac mini")</td>
-            <td>Supabase</td>
-          </tr>
-          <tr>
-            <td>이메일 주소 및 결제 정보</td>
-            <td>구매 처리 및 라이선스 키 발송</td>
-            <td>Paddle(결제 대행사) — 카드 번호는 당사 서버에 전달되지 않습니다.</td>
-          </tr>
-          <tr>
-            <td>알림 채널 토큰 (Slack URL, Telegram 토큰 등)</td>
-            <td>SSH 알림을 설정한 채널로 전송</td>
-            <td>Mac Keychain에만 저장 — 당사 서버로 전송되지 않습니다.</td>
-          </tr>
-          <tr>
-            <td>SSH 이벤트 데이터</td>
-            <td>로그인 이벤트 감지 및 알림 생성</td>
-            <td>Mac 로컬에서만 처리 — 당사 서버로 전송되지 않습니다.</td>
-          </tr>
+          <tr><td>라이선스 키</td><td>구매 확인 및 라이선스 활성화 관리</td><td>Mac Keychain + Supabase(라이선스 서버)</td></tr>
+          <tr><td>해시된 기기 식별값</td><td>Mac 1대 제한 적용. SHA-256 단방향 해시로 처리되어 원본 하드웨어 정보를 역산할 수 없습니다.</td><td>Supabase</td></tr>
+          <tr><td>Mac 이름</td><td>라이선스 활성화 기록에서 기기를 식별하기 위해 표시 (예: "John의 Mac mini")</td><td>Supabase</td></tr>
+          <tr><td>이메일 주소 및 결제 정보</td><td>구매 처리 및 라이선스 키 발송</td><td>Paddle(결제 대행사) — 카드 번호는 당사 서버에 전달되지 않습니다.</td></tr>
+          <tr><td>알림 채널 토큰 (Slack URL, Telegram 토큰 등)</td><td>SSH 알림을 설정한 채널로 전송</td><td>Mac Keychain에만 저장 — 당사 서버로 전송되지 않습니다.</td></tr>
+          <tr><td>SSH 이벤트 데이터</td><td>로그인 이벤트 감지 및 알림 생성</td><td>Mac 로컬에서만 처리 — 당사 서버로 전송되지 않습니다.</td></tr>
         </tbody>
       </table>
     </div>
-
     <h2>3. 개인정보의 보유 및 이용 기간</h2>
     <p>라이선스 활성화 기록은 라이선스가 유효한 동안 보관합니다. 앱 내에서 라이선스를 비활성화하면 서버의 활성화 기록이 삭제됩니다. 서비스를 3년 이상 이용하지 않은 경우 해당 데이터를 파기합니다.</p>
-
     <h2>4. 개인정보 처리 위탁</h2>
     <ul>
       <li><strong>Supabase</strong> — 라이선스 서버 인프라. 기본적으로 EU 리전(AWS eu-central-1)에 저장됩니다. <a href="https://supabase.com/privacy" target="_blank">Supabase 개인정보처리방침</a></li>
       <li><strong>Paddle</strong> — 결제 대행. Paddle은 Merchant of Record로서 결제 데이터 처리에 독립적인 책임을 집니다. <a href="https://www.paddle.com/legal/privacy" target="_blank">Paddle 개인정보처리방침</a></li>
     </ul>
     <p>앱 내에 광고 네트워크, 분석 SDK, 또는 그 외 제3자 데이터 수집 수단은 사용하지 않습니다.</p>
-
     <h2>5. 정보주체의 권리</h2>
     <p>이용자는 다음과 같은 권리를 행사할 수 있습니다.</p>
     <ul>
@@ -373,25 +303,149 @@
       <li><strong>삭제</strong> — 개인정보 삭제 요청 (앱 내에서 라이선스 비활성화 후 이메일로 요청)</li>
       <li><strong>처리 정지</strong> — 개인정보 처리의 일시 정지 요청</li>
     </ul>
-    <p>권리 행사는 <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>으로 요청해 주세요. 30일 이내에 답변 드립니다.</p>
-
+    <p>권리 행사는 <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>으로 요청해 주세요. 30일 이내에 답변 드립니다.</p>
     <h2>6. 개인정보 보호책임자</h2>
-    <p>이메일: <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
-
+    <p>이메일: <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
     <h2>7. 만 14세 미만 아동</h2>
     <p>Gatey는 만 14세 미만 아동을 대상으로 하지 않습니다. 아동의 개인정보를 고의로 수집하지 않습니다.</p>
-
     <h2>8. 방침 변경</h2>
     <p>본 방침은 관련 법령이나 서비스 변경에 따라 수정될 수 있습니다. 중요한 변경 사항은 앱 또는 이 페이지를 통해 안내드립니다. 페이지 상단의 시행일이 항상 최신 버전을 반영합니다.</p>
-
     <h2>9. 문의</h2>
-    <p><a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+    <p><a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
+  </div>
+</div>
+
+<!-- ── 日本語 ── -->
+<div lang-section="ja">
+  <div class="container">
+    <div class="doc-header">
+      <p class="doc-label">法的事項</p>
+      <h1>プライバシーポリシー</h1>
+      <p class="doc-meta">施行日: 2026年4月 · Oovelo · <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
+    </div>
+    <div class="highlight-box">
+      <p><strong>概要:</strong> Gateyは、あなたのMac上でSSHイベントをローカルに検出します。ライセンス管理に必要な最小限の情報（ハッシュ化されたデバイス識別子、Mac名、ライセンスキー）のみを収集します。個人データを販売したり、利用状況を追跡したりすることはありません。</p>
+    </div>
+    <h2>1. 運営者情報</h2>
+    <p>GateyはmacOSメニューバーアプリです。<strong>Oovelo</strong>（「当社」）が開発・運営しています。プライバシーに関するお問い合わせは <a href="mailto:hi@oovelo.com">hi@oovelo.com</a> までご連絡ください。</p>
+    <h2>2. 収集する情報と目的</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>データ</th><th>目的</th><th>保存場所</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ライセンスキー</td><td>購入確認とライセンス有効化の管理</td><td>MacキーチェーンおよびSupabase（ライセンスサーバー）</td></tr>
+          <tr><td>ハッシュ化されたデバイス識別子</td><td>Mac1台制限の適用。SHA-256の一方向ハッシュで処理されており、元のハードウェア情報を逆算することはできません。</td><td>Supabase</td></tr>
+          <tr><td>Mac名</td><td>ライセンス有効化記録でデバイスを識別するために表示（例: "JohnのMac Mini"）</td><td>Supabase</td></tr>
+          <tr><td>メールアドレスおよび支払い情報</td><td>購入処理とライセンスキーの送付</td><td>Paddle（決済代行業者）— カード番号は当社サーバーに渡りません</td></tr>
+          <tr><td>通知チャンネルトークン（Slack URL、Telegramトークン等）</td><td>SSHアラートを設定したチャンネルへ送信</td><td>MacのKeychainのみに保存 — 当社サーバーには送信されません</td></tr>
+          <tr><td>SSHイベントデータ</td><td>ログインイベントの検出とアラートの生成</td><td>Macのみで処理 — 当社サーバーには送信されません</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2>3. GDPR（個人データ保護）</h2>
+    <p>欧州経済領域のユーザーについては、以下の法的根拠に基づいて個人データを処理しています:</p>
+    <ul>
+      <li><strong>契約の履行</strong> — ライセンスの有効化と検証は、ご購入いただいたサービスの提供に必要です。</li>
+      <li><strong>正当な利益</strong> — 不正なライセンス使用の防止。</li>
+    </ul>
+    <h2>4. データ保持期間</h2>
+    <p>ライセンス有効化記録は、ライセンスが有効な間保持されます。ライセンスを無効化すると、サーバーの有効化記録が削除されます。3年以上サービスをご利用にならなかった場合、データを削除します。</p>
+    <h2>5. 第三者サービス</h2>
+    <ul>
+      <li><strong>Supabase</strong> — ライセンスサーバーインフラ。デフォルトでEUリージョン（AWS eu-central-1）に保存されます。<a href="https://supabase.com/privacy" target="_blank">Supabaseプライバシーポリシー</a></li>
+      <li><strong>Paddle</strong> — 決済処理。PaddleはMerchant of Recordとして決済データの処理に独立した責任を負います。<a href="https://www.paddle.com/legal/privacy" target="_blank">Paddleプライバシーポリシー</a></li>
+    </ul>
+    <p>アプリ内に広告ネットワーク、分析SDK、またはその他の第三者データ収集手段は使用していません。</p>
+    <h2>6. お客様の権利</h2>
+    <p>お住まいの地域によっては、以下の権利が認められる場合があります:</p>
+    <ul>
+      <li><strong>アクセス</strong> — 当社が保有する本人のデータのコピーをリクエスト</li>
+      <li><strong>訂正</strong> — 不正確なデータの修正をリクエスト</li>
+      <li><strong>削除</strong> — データの削除をリクエスト（アプリでライセンスを無効化後、メールにてリクエスト）</li>
+      <li><strong>可搬性</strong> — 機械可読形式でデータを受け取る</li>
+      <li><strong>異議申し立て</strong> — 正当な利益に基づく処理に異議を申し立てる</li>
+    </ul>
+    <p>権利の行使は <a href="mailto:hi@oovelo.com">hi@oovelo.com</a> までメールでご連絡ください。30日以内にご回答いたします。</p>
+    <h2>7. カリフォルニア州居住者（CCPA）</h2>
+    <p>当社は個人情報を販売しません。クロスコンテキスト行動広告のために第三者と個人情報を共有しません。</p>
+    <h2>8. 児童</h2>
+    <p>Gateyは16歳未満の児童を対象としていません。児童のデータを意図的に収集することはありません。</p>
+    <h2>9. 方針の変更</h2>
+    <p>本方針は随時更新される場合があります。重要な変更はアプリまたはこのページにてお知らせします。ページ上部の施行日が常に最新バージョンを反映します。</p>
+    <h2>10. お問い合わせ</h2>
+    <p>ご質問またはご要望: <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
+  </div>
+</div>
+
+<!-- ── 中文 ── -->
+<div lang-section="zh">
+  <div class="container">
+    <div class="doc-header">
+      <p class="doc-label">法律声明</p>
+      <h1>隐私政策</h1>
+      <p class="doc-meta">生效日期: 2026年4月 · Oovelo · <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
+    </div>
+    <div class="highlight-box">
+      <p><strong>概述:</strong> Gatey在您的Mac上本地检测SSH事件。我们仅收集管理许可证所需的最少信息——哈希化的设备标识符、您的Mac名称和许可证密钥。我们不出售您的数据，也不跟踪您的使用行为。</p>
+    </div>
+    <h2>1. 关于我们</h2>
+    <p>Gatey是由<strong>Oovelo</strong>（"我们"）开发和运营的macOS菜单栏应用程序。隐私相关咨询请联系 <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>。</p>
+    <h2>2. 我们收集的信息及原因</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>数据</th><th>目的</th><th>存储位置</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>许可证密钥</td><td>验证购买并管理许可证激活</td><td>您Mac的钥匙串 + Supabase（许可证服务器）</td></tr>
+          <tr><td>哈希化的设备指纹</td><td>执行每台Mac一个许可证的限制。指纹为SHA-256单向哈希，无法逆向还原您的硬件信息。</td><td>Supabase</td></tr>
+          <tr><td>Mac名称</td><td>在许可证记录中标识已激活的设备（例如"John的Mac Mini"）</td><td>Supabase</td></tr>
+          <tr><td>电子邮件地址及支付信息</td><td>处理您的购买并发送许可证密钥</td><td>Paddle（我们的支付处理商）——我们不会收到您的卡号</td></tr>
+          <tr><td>通知渠道令牌（Slack URL、Telegram令牌等）</td><td>将SSH警报发送至您配置的渠道</td><td>仅存储在您Mac的钥匙串中——不会发送至我们的服务器</td></tr>
+          <tr><td>SSH事件数据</td><td>检测登录事件并生成警报</td><td>仅在您的Mac上处理——不会发送至我们的服务器</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2>3. GDPR处理依据</h2>
+    <p>对于欧洲经济区用户，我们依据以下法律依据处理个人数据:</p>
+    <ul>
+      <li><strong>合同履行</strong> — 许可证激活和验证是提供您所购服务所必需的。</li>
+      <li><strong>合法利益</strong> — 防止欺诈性许可证使用。</li>
+    </ul>
+    <h2>4. 数据保留</h2>
+    <p>许可证激活记录在您的许可证有效期间保留。当您停用许可证时，激活记录将从我们的许可证服务器中删除。如果您3年未使用该服务，我们将删除您的数据。</p>
+    <h2>5. 第三方服务</h2>
+    <ul>
+      <li><strong>Supabase</strong> — 许可证服务器基础设施。数据默认存储在欧盟地区（AWS eu-central-1）。<a href="https://supabase.com/privacy" target="_blank">Supabase隐私政策</a></li>
+      <li><strong>Paddle</strong> — 支付处理。Paddle作为Merchant of Record，对支付数据处理负有独立责任。<a href="https://www.paddle.com/legal/privacy" target="_blank">Paddle隐私政策</a></li>
+    </ul>
+    <p>应用内不使用广告网络、分析SDK或任何其他第三方数据收集工具。</p>
+    <h2>6. 您的权利</h2>
+    <p>根据您所在地区，您可能享有以下权利:</p>
+    <ul>
+      <li><strong>访问</strong> — 申请查阅我们持有的您的数据副本</li>
+      <li><strong>更正</strong> — 申请更正不准确的数据</li>
+      <li><strong>删除</strong> — 申请删除您的数据（在应用中停用许可证后发送邮件申请）</li>
+      <li><strong>可携带性</strong> — 以机器可读格式接收您的数据</li>
+      <li><strong>反对</strong> — 对基于合法利益的处理提出反对</li>
+    </ul>
+    <p>如需行使上述权利，请发送邮件至 <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>。我们将在30天内回复。</p>
+    <h2>7. 加州居民（CCPA）</h2>
+    <p>我们不出售个人信息。我们不会为跨情境行为广告目的与第三方共享个人信息。</p>
+    <h2>8. 儿童</h2>
+    <p>Gatey不面向16岁以下儿童。我们不会故意收集儿童的数据。</p>
+    <h2>9. 政策变更</h2>
+    <p>我们可能会不时更新本政策。重大变更将通过应用或本页面公告。本页面顶部的生效日期始终反映最新版本。</p>
+    <h2>10. 联系我们</h2>
+    <p>咨询或申请: <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
   </div>
 </div>
 
 <footer>
   <a href="index.html">← Back to Gatey</a> &nbsp;·&nbsp;
-  <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>
+  <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>
 </footer>
 
 <script>
@@ -400,10 +454,15 @@
       el.classList.toggle('active', el.getAttribute('lang-section') === lang);
     });
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'English' : '한국어'));
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
     document.documentElement.lang = lang;
+    localStorage.setItem('gatey-lang', lang);
   }
+  const saved = localStorage.getItem('gatey-lang');
+  const sys = navigator.language.startsWith('ko') ? 'ko' : navigator.language.startsWith('ja') ? 'ja' : navigator.language.startsWith('zh') ? 'zh' : 'en';
+  const hash = location.hash.replace('#', '');
+  setLang(['en','ko','ja','zh'].includes(hash) ? hash : (saved || sys));
 </script>
 
 </body>

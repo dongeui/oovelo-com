@@ -43,17 +43,18 @@
 
     .lang-toggle {
       display: flex;
-      gap: 8px;
+      gap: 4px;
     }
 
     .lang-btn {
       background: none;
       border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 13px;
+      padding: 5px 10px;
+      border-radius: 16px;
+      font-size: 12px;
       cursor: pointer;
+      font-family: inherit;
       transition: border-color 0.15s, color 0.15s;
     }
 
@@ -161,8 +162,10 @@
 <nav>
   <a href="index.html" class="nav-logo">Gatey</a>
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('en')">English</button>
-    <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
+    <button class="lang-btn" onclick="setLang('ko')" data-lang="ko">한국어</button>
+    <button class="lang-btn" onclick="setLang('ja')" data-lang="ja">日本語</button>
+    <button class="lang-btn" onclick="setLang('zh')" data-lang="zh">中文</button>
   </div>
 </nav>
 
@@ -172,25 +175,20 @@
     <div class="doc-header">
       <p class="doc-label">Legal</p>
       <h1>Refund Policy</h1>
-      <p class="doc-meta">Effective date: April 2026 · Oovelo · <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+      <p class="doc-meta">Effective date: April 2026 · Oovelo · <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
     </div>
-
     <div class="highlight-box">
       <p><strong>Short version:</strong> 30-day refund, no questions asked. Email us with your order number.</p>
     </div>
-
     <h2>1. 30-day refund guarantee</h2>
     <p>If you are not satisfied with Gatey for any reason, you may request a full refund within 30 days of your purchase. No questions asked.</p>
-    <p>To request a refund, email <a href="mailto:hello@oovelo.com">hello@oovelo.com</a> with your order number (from the Paddle purchase email). We will process your refund within 3 business days.</p>
-
+    <p>To request a refund, email <a href="mailto:hi@oovelo.com">hi@oovelo.com</a> with your order number (from the Paddle purchase email). We will process your refund within 3 business days.</p>
     <h2>2. How refunds are processed</h2>
     <p>Payments are processed by <a href="https://www.paddle.com" target="_blank">Paddle</a>, who acts as the Merchant of Record. Refunds are governed by <a href="https://www.paddle.com/legal/buyer-terms" target="_blank">Paddle's Buyer Terms</a> and will be returned to the original payment method. Processing time depends on your bank or card issuer (typically 3–10 business days).</p>
-
     <h2>3. Free trial</h2>
     <p>Gatey offers a 7-day free trial — no credit card required. We encourage you to try the App before purchasing.</p>
-
     <h2>4. Contact</h2>
-    <p>For refund requests or questions: <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+    <p>For refund requests or questions: <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
   </div>
 </div>
 
@@ -200,25 +198,66 @@
     <div class="doc-header">
       <p class="doc-label">법적 고지</p>
       <h1>환불 정책</h1>
-      <p class="doc-meta">시행일: 2026년 4월 · Oovelo · <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+      <p class="doc-meta">시행일: 2026년 4월 · Oovelo · <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
     </div>
-
     <div class="highlight-box">
       <p><strong>요약:</strong> 구매 후 30일 이내 조건 없이 전액 환불됩니다. 주문 번호와 함께 이메일로 요청해 주세요.</p>
     </div>
-
     <h2>1. 30일 환불 보장</h2>
     <p>어떤 이유로든 Gatey에 만족하지 않으신다면, 구매일로부터 30일 이내에 전액 환불을 요청하실 수 있습니다. 이유를 묻지 않습니다.</p>
-    <p>환불을 요청하시려면, Paddle 구매 이메일에 있는 주문 번호와 함께 <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>으로 이메일을 보내 주세요. 영업일 기준 3일 이내에 환불 처리해 드립니다.</p>
-
+    <p>환불을 요청하시려면, Paddle 구매 이메일에 있는 주문 번호와 함께 <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>으로 이메일을 보내 주세요. 영업일 기준 3일 이내에 환불 처리해 드립니다.</p>
     <h2>2. 환불 처리 방식</h2>
     <p>결제는 Merchant of Record인 <a href="https://www.paddle.com" target="_blank">Paddle</a>을 통해 처리됩니다. 환불은 <a href="https://www.paddle.com/legal/buyer-terms" target="_blank">Paddle 구매자 약관</a>에 따라 처리되며, 원래 결제 수단으로 반환됩니다. 처리 시간은 카드사 또는 은행에 따라 다를 수 있습니다 (보통 영업일 기준 3~10일).</p>
-
     <h2>3. 무료 체험</h2>
     <p>Gatey는 7일 무료 체험을 제공합니다 — 신용카드가 필요하지 않습니다. 구매 전에 충분히 체험해 보시길 권장합니다.</p>
-
     <h2>4. 문의</h2>
-    <p>환불 요청 또는 문의: <a href="mailto:hello@oovelo.com">hello@oovelo.com</a></p>
+    <p>환불 요청 또는 문의: <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
+  </div>
+</div>
+
+<!-- ── 日本語 ── -->
+<div lang-section="ja">
+  <div class="container">
+    <div class="doc-header">
+      <p class="doc-label">法的事項</p>
+      <h1>返金ポリシー</h1>
+      <p class="doc-meta">施行日: 2026年4月 · Oovelo · <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
+    </div>
+    <div class="highlight-box">
+      <p><strong>概要:</strong> 購入後30日以内であれば、理由を問わず全額返金いたします。注文番号を添えてメールでご連絡ください。</p>
+    </div>
+    <h2>1. 30日間返金保証</h2>
+    <p>いかなる理由においても、ご購入日から30日以内であれば全額返金をお申し込みいただけます。理由は一切問いません。</p>
+    <p>返金をご希望の場合は、Paddleの購入メールに記載の注文番号を添えて <a href="mailto:hi@oovelo.com">hi@oovelo.com</a> までご連絡ください。3営業日以内に処理いたします。</p>
+    <h2>2. 返金の処理方法</h2>
+    <p>決済はMerchant of Recordである<a href="https://www.paddle.com" target="_blank">Paddle</a>を通じて処理されます。返金は<a href="https://www.paddle.com/legal/buyer-terms" target="_blank">Paddleの購入者規約</a>に基づき、元の支払い方法に返還されます。処理時間はカード会社または銀行によって異なります（通常3〜10営業日）。</p>
+    <h2>3. 無料トライアル</h2>
+    <p>Gateyは7日間の無料トライアルを提供しています — クレジットカードは不要です。ご購入前に十分にお試しいただくことをお勧めします。</p>
+    <h2>4. お問い合わせ</h2>
+    <p>返金リクエストまたはご質問: <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
+  </div>
+</div>
+
+<!-- ── 中文 ── -->
+<div lang-section="zh">
+  <div class="container">
+    <div class="doc-header">
+      <p class="doc-label">法律声明</p>
+      <h1>退款政策</h1>
+      <p class="doc-meta">生效日期: 2026年4月 · Oovelo · <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
+    </div>
+    <div class="highlight-box">
+      <p><strong>概述:</strong> 购买后30天内，无条件全额退款。请提供订单号并发送邮件申请。</p>
+    </div>
+    <h2>1. 30天退款保证</h2>
+    <p>无论何种原因，您均可在购买之日起30天内申请全额退款，无需说明理由。</p>
+    <p>如需退款，请携带Paddle购买邮件中的订单号发送邮件至 <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>。我们将在3个工作日内处理您的退款。</p>
+    <h2>2. 退款处理方式</h2>
+    <p>支付由作为Merchant of Record的<a href="https://www.paddle.com" target="_blank">Paddle</a>处理。退款依据<a href="https://www.paddle.com/legal/buyer-terms" target="_blank">Paddle买家条款</a>退还至原始付款方式。处理时间取决于您的银行或发卡机构（通常为3至10个工作日）。</p>
+    <h2>3. 免费试用</h2>
+    <p>Gatey提供7天免费试用——无需信用卡。我们建议您在购买前充分体验应用。</p>
+    <h2>4. 联系我们</h2>
+    <p>退款申请或咨询: <a href="mailto:hi@oovelo.com">hi@oovelo.com</a></p>
   </div>
 </div>
 
@@ -226,7 +265,7 @@
   <a href="index.html">← Back to Gatey</a> &nbsp;·&nbsp;
   <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
   <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
-  <a href="mailto:hello@oovelo.com">hello@oovelo.com</a>
+  <a href="mailto:hi@oovelo.com">hi@oovelo.com</a>
 </footer>
 
 <script>
@@ -235,10 +274,14 @@
       el.classList.toggle('active', el.getAttribute('lang-section') === lang);
     });
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'English' : '한국어'));
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
     document.documentElement.lang = lang;
+    localStorage.setItem('gatey-lang', lang);
   }
+  const saved = localStorage.getItem('gatey-lang');
+  const sys = navigator.language.startsWith('ko') ? 'ko' : navigator.language.startsWith('ja') ? 'ja' : navigator.language.startsWith('zh') ? 'zh' : 'en';
+  setLang(saved || sys);
 </script>
 
 </body>
